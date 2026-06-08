@@ -323,6 +323,94 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "Keyboard-first command palette in the brand's terminal flavour — search input over grouped, filterable items on the --popover surface, uppercase mono group headings, --accent highlighted row, muted mono shortcuts. Includes CommandDialog (palette in a centered modal). Built on cmdk.",
+      "dependencies": ["cmdk", "lucide-react"],
+      "registryDependencies": ["@crashoverride/theme", "@crashoverride/dialog"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Autocomplete input + filtered dropdown — composes Popover and Command. A trigger button opens a popover holding a searchable command list with a neon check on the selected option. No new Radix package.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "@crashoverride/theme",
+        "@crashoverride/popover",
+        "@crashoverride/command"
+      ],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/combobox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Underline tab strip for switching views or filters. The active tab carries a neon --primary underline and a bright label; inactive tabs run muted. Mono voice, hairline baseline. Built on Radix Tabs.",
+      "dependencies": ["@radix-ui/react-tabs"],
+      "registryDependencies": ["@crashoverride/theme"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Stacked disclosure panels inside a hairline-bordered, sharp-radius container — mono trigger rows with a chevron that rotates on open, muted body copy. Single-open by default; set type=\"multiple\" to allow many. Built on Radix Accordion.",
+      "dependencies": ["@radix-ui/react-accordion", "lucide-react"],
+      "registryDependencies": ["@crashoverride/theme"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "Single expandable region driven by your own trigger. Content slides/fades in on open. Built on Radix Collapsible.",
+      "dependencies": ["@radix-ui/react-collapsible"],
+      "registryDependencies": ["@crashoverride/theme"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "AlertDialog",
+      "description": "Confirm/destructive modal over a dimmed scrim — title, description, Cancel + Action buttons. The action maps to --primary, or --destructive when destructive. --popover surface, hairline border, sharp brand radius. Built on Radix AlertDialog.",
+      "dependencies": ["@radix-ui/react-alert-dialog"],
+      "registryDependencies": ["@crashoverride/theme"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

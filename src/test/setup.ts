@@ -13,6 +13,11 @@ if (!("ResizeObserver" in globalThis)) {
     ResizeObserver as unknown as typeof globalThis.ResizeObserver
 }
 
+// jsdom ships no Element.scrollIntoView; cmdk (Command) calls it on selection.
+if (!Element.prototype.scrollIntoView) {
+  Element.prototype.scrollIntoView = () => {}
+}
+
 afterEach(() => {
   cleanup()
 })

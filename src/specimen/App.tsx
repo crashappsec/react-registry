@@ -82,6 +82,45 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
 } from "@/registry/crashoverride/ui/dropdown-menu"
+import {
+  Command,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandShortcut,
+} from "@/registry/crashoverride/ui/command"
+import { Combobox } from "@/registry/crashoverride/ui/combobox"
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/registry/crashoverride/ui/tabs"
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/registry/crashoverride/ui/accordion"
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/registry/crashoverride/ui/collapsible"
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/registry/crashoverride/ui/alert-dialog"
+import { Search } from "lucide-react"
 
 /**
  * Specimen app — local visual QA for the Crash Override registry.
@@ -462,6 +501,125 @@ export function App() {
             </DropdownMenu>
           </Group>
         </TooltipProvider>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Command palette
+        </h2>
+        <div className="max-w-md rounded-lg border border-border shadow-md">
+          <Command>
+            <CommandInput placeholder="Type a command or search…" />
+            <CommandList>
+              <CommandEmpty>No results.</CommandEmpty>
+              <CommandGroup heading="Actions">
+                <CommandItem>
+                  <Search />
+                  Search services
+                  <CommandShortcut>⌘K</CommandShortcut>
+                </CommandItem>
+                <CommandItem>Re-scan org</CommandItem>
+              </CommandGroup>
+              <CommandGroup heading="Navigation">
+                <CommandItem>Go to dashboard</CommandItem>
+                <CommandItem>Open settings</CommandItem>
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </div>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Combobox
+        </h2>
+        <div className="max-w-xs">
+          <Combobox
+            options={["us-east-1", "eu-west-1", "ap-south-1"]}
+            placeholder="Pick a region"
+          />
+        </div>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Tabs
+        </h2>
+        <Tabs defaultValue="30d" className="max-w-md">
+          <TabsList>
+            <TabsTrigger value="30d">30 days</TabsTrigger>
+            <TabsTrigger value="all">All time</TabsTrigger>
+            <TabsTrigger value="pipe">
+              Pipeline
+              <Badge tone="amber">7</Badge>
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="30d" className="text-sm text-muted-foreground">
+            Last 30 days of activity.
+          </TabsContent>
+          <TabsContent value="all" className="text-sm text-muted-foreground">
+            Everything ever recorded.
+          </TabsContent>
+          <TabsContent value="pipe" className="text-sm text-muted-foreground">
+            7 services in the pipeline.
+          </TabsContent>
+        </Tabs>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Accordion
+        </h2>
+        <Accordion type="single" collapsible className="max-w-md">
+          <AccordionItem value="chalk">
+            <AccordionTrigger>What does Chalk record?</AccordionTrigger>
+            <AccordionContent>
+              A deterministic SBOM + provenance for every build artifact.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="oss">
+            <AccordionTrigger>Is it open source?</AccordionTrigger>
+            <AccordionContent>Yes — GPL-licensed.</AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Collapsible
+        </h2>
+        <Collapsible className="max-w-md space-y-2">
+          <CollapsibleTrigger asChild>
+            <Button variant="ghost">Toggle details</Button>
+          </CollapsibleTrigger>
+          <CollapsibleContent className="rounded-md border border-border p-3 text-sm text-muted-foreground">
+            3 services beaconing from prod since 14:02.
+          </CollapsibleContent>
+        </Collapsible>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          AlertDialog
+        </h2>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant="secondary">Delete service</Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete service?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This permanently removes the service and its scan history. This
+                cannot be undone.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction variant="destructive">Delete</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </section>
     </div>
   )
