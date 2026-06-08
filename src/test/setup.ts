@@ -13,6 +13,23 @@ if (!("ResizeObserver" in globalThis)) {
     ResizeObserver as unknown as typeof globalThis.ResizeObserver
 }
 
+// jsdom ships no IntersectionObserver; embla (Carousel) observes slides-in-view.
+if (!("IntersectionObserver" in globalThis)) {
+  class IntersectionObserver {
+    readonly root = null
+    readonly rootMargin = ""
+    readonly thresholds = []
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+    takeRecords() {
+      return []
+    }
+  }
+  globalThis.IntersectionObserver =
+    IntersectionObserver as unknown as typeof globalThis.IntersectionObserver
+}
+
 // jsdom ships no Element.scrollIntoView; cmdk (Command) calls it on selection.
 if (!Element.prototype.scrollIntoView) {
   Element.prototype.scrollIntoView = () => {}

@@ -648,6 +648,133 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "icon-button",
+      "type": "registry:ui",
+      "title": "IconButton",
+      "description": "Square, icon-only action for dense chrome — toolbars, panel headers, table rows. Ghost / outline / solid variants, sizes sm/md/lg. Requires a label (sets aria-label + tooltip).",
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+      "registryDependencies": ["@crashoverride/theme", "@crashoverride/button"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/icon-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "title": "ButtonGroup",
+      "description": "Joins related Buttons into one segmented control with shared borders — inner corners square off and adjacent hairlines collapse. Horizontal or vertical.",
+      "registryDependencies": ["@crashoverride/theme", "@crashoverride/button"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/button-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "title": "AspectRatio",
+      "description": "Constrains children to a fixed width:height ratio (e.g. 16/9). Set object-cover on media to crop cleanly. Built on Radix AspectRatio.",
+      "dependencies": ["@radix-ui/react-aspect-ratio"],
+      "registryDependencies": ["@crashoverride/theme"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/aspect-ratio.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "InputGroup",
+      "description": "An Input joined with leading/trailing addons into one bordered control — addons sit on the --secondary surface in the mono voice; the group carries the hairline border and neon focus-within ring. Composes Input.",
+      "registryDependencies": ["@crashoverride/theme", "@crashoverride/input"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "InputOTP",
+      "description": "One-time-passcode field — auto-advancing, paste-aware mono cells on the hairline --input border; the active cell lights its border + ring with neon --ring and shows a blinking caret. Built on the input-otp package.",
+      "dependencies": ["input-otp", "lucide-react"],
+      "registryDependencies": ["@crashoverride/theme"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/input-otp.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "title": "NativeSelect",
+      "description": "A lightly-styled native <select> for simple, accessible cases (no custom popover). Matches the Input voice — hairline --input border, neon focus ring — with a brand chevron. Pass options or <option> children.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@crashoverride/theme"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/native-select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "Panels split by a draggable handle — a hairline --border rule that lights to neon --ring on focus, with an optional grip badge on the --secondary surface. Built on react-resizable-panels (v4).",
+      "dependencies": ["react-resizable-panels", "lucide-react"],
+      "registryDependencies": ["@crashoverride/theme"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/resizable.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "Horizontal (or vertical) slide carousel with prev/next controls that reuse the brand IconButton and disable at the ends. Keyboard + paste aware. Built on embla-carousel-react.",
+      "dependencies": ["embla-carousel-react", "lucide-react"],
+      "registryDependencies": [
+        "@crashoverride/theme",
+        "@crashoverride/icon-button"
+      ],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toaster",
+      "type": "registry:ui",
+      "title": "Toaster",
+      "description": "Stacked toast system on the brand surfaces — mount one <Toaster /> near the app root and fire toasts with the re-exported toast(). Theme is read from the document root (.dark / .light / [data-theme]), so no next-themes provider is needed. Built on sonner.",
+      "dependencies": ["sonner"],
+      "registryDependencies": ["@crashoverride/theme"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/toaster.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

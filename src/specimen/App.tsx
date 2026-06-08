@@ -208,6 +208,30 @@ import {
   SidebarInset,
   SidebarTrigger,
 } from "@/registry/crashoverride/ui/sidebar"
+import { IconButton } from "@/registry/crashoverride/ui/icon-button"
+import { ButtonGroup } from "@/registry/crashoverride/ui/button-group"
+import { AspectRatio } from "@/registry/crashoverride/ui/aspect-ratio"
+import { InputGroup } from "@/registry/crashoverride/ui/input-group"
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+  InputOTPSeparator,
+} from "@/registry/crashoverride/ui/input-otp"
+import { NativeSelect } from "@/registry/crashoverride/ui/native-select"
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "@/registry/crashoverride/ui/resizable"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/registry/crashoverride/ui/carousel"
+import { Toaster, toast } from "@/registry/crashoverride/ui/toaster"
 import {
   Search,
   CircleCheck,
@@ -217,6 +241,9 @@ import {
   Cloud,
   Box as BoxIcon,
   ShieldCheck,
+  Settings,
+  Trash2,
+  Pencil,
 } from "lucide-react"
 
 /**
@@ -1102,6 +1129,138 @@ export function App() {
           </SidebarProvider>
         </div>
       </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          IconButton / ButtonGroup
+        </h2>
+        <Stack className="gap-4">
+          <Group className="gap-2">
+            <IconButton label="Settings">
+              <Settings />
+            </IconButton>
+            <IconButton label="Edit" variant="outline">
+              <Pencil />
+            </IconButton>
+            <IconButton label="Delete" variant="solid">
+              <Trash2 />
+            </IconButton>
+            <IconButton label="Small" size="sm" variant="outline">
+              <Search />
+            </IconButton>
+          </Group>
+          <ButtonGroup>
+            <Button variant="secondary">Day</Button>
+            <Button variant="secondary">Week</Button>
+            <Button variant="secondary">Month</Button>
+          </ButtonGroup>
+        </Stack>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Forms — InputGroup / NativeSelect / InputOTP
+        </h2>
+        <Stack className="gap-4 max-w-md">
+          <InputGroup
+            prefix="https://"
+            suffix=".crashoverride.com"
+            placeholder="my-org"
+          />
+          <NativeSelect options={["Low", "Medium", "High"]} aria-label="severity" />
+          <InputOTP maxLength={6}>
+            <InputOTPGroup>
+              <InputOTPSlot index={0} />
+              <InputOTPSlot index={1} />
+              <InputOTPSlot index={2} />
+            </InputOTPGroup>
+            <InputOTPSeparator />
+            <InputOTPGroup>
+              <InputOTPSlot index={3} />
+              <InputOTPSlot index={4} />
+              <InputOTPSlot index={5} />
+            </InputOTPGroup>
+          </InputOTP>
+        </Stack>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          AspectRatio
+        </h2>
+        <div className="max-w-sm">
+          <AspectRatio ratio={16 / 9}>
+            <Center className="size-full rounded-md border border-border bg-card text-sm text-muted-foreground">
+              16 : 9
+            </Center>
+          </AspectRatio>
+        </div>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Resizable
+        </h2>
+        <div className="h-44 max-w-2xl overflow-hidden rounded-md border border-border">
+          <ResizablePanelGroup orientation="horizontal">
+            <ResizablePanel defaultSize={40}>
+              <Center className="size-full p-4 text-sm text-muted-foreground">
+                Catalog
+              </Center>
+            </ResizablePanel>
+            <ResizableHandle withHandle />
+            <ResizablePanel defaultSize={60}>
+              <Center className="size-full p-4 text-sm text-muted-foreground">
+                Detail
+              </Center>
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </div>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Carousel
+        </h2>
+        <div className="mx-12 max-w-sm">
+          <Carousel>
+            <CarouselContent>
+              {["chalk", "compass", "beacon"].map((s) => (
+                <CarouselItem key={s}>
+                  <Center className="h-32 rounded-md border border-border bg-card font-mono text-sm">
+                    {s}
+                  </Center>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Toaster
+        </h2>
+        <Group className="gap-2 flex-wrap">
+          <Button onClick={() => toast("Re-scan queued")}>Toast</Button>
+          <Button
+            variant="secondary"
+            onClick={() => toast.success("Artifact tagged")}
+          >
+            Success
+          </Button>
+          <Button
+            variant="ghost"
+            onClick={() => toast.error("Certificate expired")}
+          >
+            Error
+          </Button>
+        </Group>
+      </section>
+
+      <Toaster richColors closeButton />
     </div>
   )
 }
