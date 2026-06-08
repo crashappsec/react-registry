@@ -20,6 +20,47 @@
           "target": "app/tokens.css"
         }
       ]
+    },
+    {
+      "name": "layout",
+      "type": "registry:ui",
+      "title": "Layout primitives",
+      "description": "Stack, Group, Center, Box, Grid — className-first flex/grid primitives with asChild support.",
+      "dependencies": ["@radix-ui/react-slot"],
+      "registryDependencies": ["@crashoverride/theme"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/layout.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "divider",
+      "type": "registry:ui",
+      "title": "Divider",
+      "description": "Hairline rule (brand name for a separator). Horizontal or vertical.",
+      "registryDependencies": ["@crashoverride/theme"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/divider.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Branded action button — neon-lime primary, outline secondary, cobalt enterprise, quiet ghost.",
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+      "registryDependencies": ["@crashoverride/theme"],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
