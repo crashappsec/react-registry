@@ -34,6 +34,23 @@ const preview: Preview = {
     a11y: { test: "todo" },
   },
   decorators: [
+    // Paint the brand surface behind every story so components render themed in
+    // BOTH the canvas AND the autodocs doc-blocks. Without this, Storybook's docs
+    // blocks default to a white background and the dark-first variants (secondary,
+    // ghost, outline) become invisible — making the design system look "unthemed".
+    (Story) => (
+      <div
+        style={{
+          background: "var(--background)",
+          color: "var(--foreground)",
+          fontFamily: "var(--font-sans)",
+          padding: "1.75rem",
+          borderRadius: "var(--radius)",
+        }}
+      >
+        <Story />
+      </div>
+    ),
     // Light/dark toggle in the toolbar. globals.css keys off [data-theme],
     // so flipping this attribute on <html> re-resolves every token live.
     withThemeByDataAttribute({
