@@ -1,4 +1,4 @@
-# Crash Override — React Design System
+# Crash Override — Marketing React Design System
 
 A public **shadcn registry** that packages the Crash Override Design System: a brand
 theme (the oklch light+dark token bridge + fonts) plus 60+ branded components and a
