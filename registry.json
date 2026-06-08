@@ -939,6 +939,59 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "stat-card-row",
+      "type": "registry:block",
+      "title": "Stat card row",
+      "description": "A console metric strip: a responsive row of stat cards with capability accent bars, display-face values, labels, and mono trend deltas. Recreated from the console Dashboard.",
+      "registryDependencies": [
+        "@crashoverride/theme",
+        "@crashoverride/card",
+        "@crashoverride/layout"
+      ],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/blocks/stat-card-row.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "service-detail-header",
+      "type": "registry:block",
+      "title": "Service detail header",
+      "description": "A console resource-page header: media tile, service name with a health StatusBadge, mono identifier, a row of meta Tags, and a right-pinned primary action. Recreated from the console ServiceDetail.",
+      "registryDependencies": [
+        "@crashoverride/theme",
+        "@crashoverride/button",
+        "@crashoverride/status-badge",
+        "@crashoverride/tag",
+        "@crashoverride/layout"
+      ],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/blocks/service-detail-header.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "service-table",
+      "type": "registry:block",
+      "title": "Service table",
+      "description": "A catalog data table with a health status column: mono service name, environment, a StatusBadge, and a right-aligned numeric column with hover-lift rows. Recreated from the console deployments list.",
+      "registryDependencies": [
+        "@crashoverride/theme",
+        "@crashoverride/table",
+        "@crashoverride/status-badge"
+      ],
+      "files": [
+        {
+          "path": "src/registry/crashoverride/blocks/service-table.tsx",
+          "type": "registry:block"
+        }
+      ]
     }
   ]
 }

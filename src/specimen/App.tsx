@@ -256,6 +256,9 @@ import {
 } from "@/registry/crashoverride/ui/chart"
 import { Logo } from "@/registry/crashoverride/ui/logo"
 import { Tagline } from "@/registry/crashoverride/ui/tagline"
+import { StatCardRow } from "@/registry/crashoverride/blocks/stat-card-row"
+import { ServiceDetailHeader } from "@/registry/crashoverride/blocks/service-detail-header"
+import { ServiceTable } from "@/registry/crashoverride/blocks/service-table"
 import { BarChart, Bar, XAxis, CartesianGrid } from "recharts"
 import {
   Search,
@@ -1468,6 +1471,82 @@ export function App() {
           Tagline
         </h2>
         <Tagline />
+      </section>
+
+      <header className="flex items-center justify-between border-b border-border pb-6 mb-10 mt-20">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-chart-1">
+            02 · blocks
+          </p>
+          <h1
+            className="text-4xl font-bold tracking-tight"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Composite blocks
+          </h1>
+        </div>
+      </header>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          StatCardRow
+        </h2>
+        <StatCardRow
+          stats={[
+            { label: "Services tracked", value: "1,284", delta: "+12 this week", accent: "neon" },
+            { label: "Builds today", value: "346", delta: "+8%", accent: "cobalt" },
+            { label: "Artifacts tagged", value: "98.2%", delta: "of all shipped", accent: "amber" },
+            { label: "Certs expiring", value: "7", delta: "next 30 days", accent: "magenta" },
+          ]}
+        />
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          ServiceDetailHeader
+        </h2>
+        <div className="rounded-md border border-border bg-card p-6">
+          <ServiceDetailHeader
+            name="prod-bandwidth-system"
+            status="healthy"
+            identifier="224111541501"
+            media={<Cloud />}
+            meta={[
+              { icon: <Globe />, label: "us-east-1" },
+              { icon: <Users />, label: "12 contributors" },
+              { label: "SLSA", value: "Level 2" },
+            ]}
+            action={
+              <>
+                <Button size="sm">
+                  <ShieldCheck />
+                  Redeploy
+                </Button>
+                <IconButton label="More" variant="outline" size="sm">
+                  <Settings />
+                </IconButton>
+              </>
+            }
+          />
+        </div>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          ServiceTable
+        </h2>
+        <div className="max-w-2xl">
+          <ServiceTable
+            caption="Related services · last 24h"
+            rows={[
+              { name: "prod-platform-backend", env: "prod", status: "healthy", builds: "1,204" },
+              { name: "uat-platform-backend", env: "uat", status: "needs_attention", builds: "318" },
+              { name: "dev-bandwidth-system", env: "dev", status: "at_risk", builds: "27" },
+              { name: "legacy-edge-proxy", env: "prod", status: "stale", builds: "0" },
+              { name: "qa-platform-backend", env: "qa", status: "critical", builds: "4" },
+            ]}
+          />
+        </div>
       </section>
 
       <Toaster richColors closeButton />
