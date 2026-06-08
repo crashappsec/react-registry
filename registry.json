@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "crashoverride",
+  "homepage": "https://crashappsec.github.io/react-design-system",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:style",
+      "title": "Crash Override theme",
+      "description": "Brand tokens (oklch light+dark) + fonts. Install first.",
+      "files": [
+        {
+          "path": "src/registry/crashoverride/theme/globals.css",
+          "type": "registry:file",
+          "target": "app/globals.css"
+        },
+        {
+          "path": "src/registry/crashoverride/theme/tokens.css",
+          "type": "registry:file",
+          "target": "app/tokens.css"
+        }
+      ]
+    }
+  ]
+}
