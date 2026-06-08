@@ -120,7 +120,39 @@ import {
   AlertDialogCancel,
   AlertDialogAction,
 } from "@/registry/crashoverride/ui/alert-dialog"
-import { Search } from "lucide-react"
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption,
+} from "@/registry/crashoverride/ui/table"
+import {
+  Alert,
+  AlertTitle,
+  AlertDescription,
+} from "@/registry/crashoverride/ui/alert"
+import { Progress } from "@/registry/crashoverride/ui/progress"
+import { Skeleton } from "@/registry/crashoverride/ui/skeleton"
+import {
+  Avatar,
+  AvatarFallback,
+  initials,
+} from "@/registry/crashoverride/ui/avatar"
+import { ScrollArea } from "@/registry/crashoverride/ui/scroll-area"
+import { Spinner } from "@/registry/crashoverride/ui/spinner"
+import {
+  Separator,
+} from "@/registry/crashoverride/ui/separator"
+import {
+  Search,
+  CircleCheck,
+  TriangleAlert,
+  Info,
+  CircleX,
+} from "lucide-react"
 
 /**
  * Specimen app — local visual QA for the Crash Override registry.
@@ -620,6 +652,170 @@ export function App() {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Table
+        </h2>
+        <div className="max-w-2xl rounded-md border border-border">
+          <Table>
+            <TableCaption>Service builds · last 24h</TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Service</TableHead>
+                <TableHead>Env</TableHead>
+                <TableHead className="text-right font-mono tabular-nums">
+                  Builds
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {[
+                { name: "chalk", env: "prod", builds: "1,204" },
+                { name: "compass", env: "staging", builds: "318" },
+                { name: "beacon", env: "dev", builds: "27" },
+              ].map((r) => (
+                <TableRow key={r.name}>
+                  <TableCell className="font-medium">{r.name}</TableCell>
+                  <TableCell>
+                    <Badge tone="cobalt">{r.env}</Badge>
+                  </TableCell>
+                  <TableCell className="text-right font-mono tabular-nums">
+                    {r.builds}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Alert
+        </h2>
+        <Stack className="max-w-xl gap-3">
+          <Alert variant="success">
+            <CircleCheck />
+            <AlertTitle>Artifact tagged</AlertTitle>
+            <AlertDescription>
+              Provenance recorded and beaconing from production.
+            </AlertDescription>
+          </Alert>
+          <Alert variant="info">
+            <Info />
+            <AlertTitle>New scan available</AlertTitle>
+            <AlertDescription>
+              A fresh SBOM is ready for chalk.
+            </AlertDescription>
+          </Alert>
+          <Alert variant="warning">
+            <TriangleAlert />
+            <AlertTitle>Certificate expiring</AlertTitle>
+            <AlertDescription>
+              The signing certificate expires in 6 days.
+            </AlertDescription>
+          </Alert>
+          <Alert variant="destructive">
+            <CircleX />
+            <AlertTitle>Certificate expired</AlertTitle>
+          </Alert>
+          <Alert>
+            <AlertTitle>Heads up</AlertTitle>
+            <AlertDescription>A neutral, default banner.</AlertDescription>
+          </Alert>
+        </Stack>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Progress
+        </h2>
+        <Stack className="max-w-md gap-4">
+          <Progress value={72} />
+          <Progress value={28} className="[&>div]:bg-chart-3" />
+        </Stack>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Skeleton
+        </h2>
+        <div className="flex max-w-md items-center gap-4">
+          <Skeleton className="size-11 rounded-full" />
+          <Stack className="flex-1 gap-2">
+            <Skeleton className="h-4 w-3/5" />
+            <Skeleton className="h-3 w-full" />
+          </Stack>
+        </div>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Avatar
+        </h2>
+        <Group className="items-center gap-4">
+          <Avatar size="xs">
+            <AvatarFallback>{initials("Savannah Nguyen")}</AvatarFallback>
+          </Avatar>
+          <Avatar size="sm">
+            <AvatarFallback>{initials("Floyd Miles")}</AvatarFallback>
+          </Avatar>
+          <Avatar size="md">
+            <AvatarFallback>{initials("Devon Lane")}</AvatarFallback>
+          </Avatar>
+          <Avatar size="lg" ring>
+            <AvatarFallback>{initials("Jane Cooper")}</AvatarFallback>
+          </Avatar>
+        </Group>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Separator
+        </h2>
+        <Stack className="max-w-md gap-3">
+          <div className="text-sm text-muted-foreground">Above the rule</div>
+          <Separator />
+          <div className="text-sm text-muted-foreground">Below the rule</div>
+          <Group className="h-5 items-center gap-3 text-sm text-muted-foreground">
+            <span>chalk</span>
+            <Separator orientation="vertical" />
+            <span>compass</span>
+            <Separator orientation="vertical" />
+            <span>beacon</span>
+          </Group>
+        </Stack>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          ScrollArea
+        </h2>
+        <ScrollArea className="h-40 max-w-xs rounded-md border border-border p-3">
+          <Stack className="gap-2 text-sm text-muted-foreground">
+            {Array.from({ length: 24 }, (_, i) => (
+              <div key={i} className="font-mono">
+                repo-{String(i + 1).padStart(2, "0")}.git
+              </div>
+            ))}
+          </Stack>
+        </ScrollArea>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Spinner
+        </h2>
+        <Group className="items-center gap-6">
+          <Spinner className="size-4" />
+          <Spinner className="size-6 text-chart-1" />
+          <Button disabled>
+            <Spinner className="mr-2 size-4" />
+            Saving…
+          </Button>
+        </Group>
       </section>
     </div>
   )
