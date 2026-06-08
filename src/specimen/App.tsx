@@ -15,6 +15,25 @@ import { Input } from "@/registry/crashoverride/ui/input"
 import { Label } from "@/registry/crashoverride/ui/label"
 import { Field } from "@/registry/crashoverride/ui/field"
 import { Textarea } from "@/registry/crashoverride/ui/textarea"
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/registry/crashoverride/ui/select"
+import { Checkbox } from "@/registry/crashoverride/ui/checkbox"
+import { Switch } from "@/registry/crashoverride/ui/switch"
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/registry/crashoverride/ui/radio-group"
+import { Slider } from "@/registry/crashoverride/ui/slider"
+import { Toggle } from "@/registry/crashoverride/ui/toggle"
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@/registry/crashoverride/ui/toggle-group"
 
 /**
  * Specimen app — local visual QA for the Crash Override registry.
@@ -189,6 +208,102 @@ export function App() {
           <Field label="Incident notes" htmlFor="notes">
             <Textarea id="notes" rows={4} placeholder="Describe the incident…" />
           </Field>
+        </Stack>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Select
+        </h2>
+        <Stack className="gap-4 max-w-md">
+          <Field label="Region" htmlFor="region">
+            <Select>
+              <SelectTrigger id="region">
+                <SelectValue placeholder="Pick a region" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="us-east-1">us-east-1</SelectItem>
+                <SelectItem value="eu-west-1">eu-west-1</SelectItem>
+                <SelectItem value="ap-south-1">ap-south-1</SelectItem>
+              </SelectContent>
+            </Select>
+          </Field>
+        </Stack>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Checkbox / Switch
+        </h2>
+        <Stack className="gap-4">
+          <label className="flex items-center gap-2 text-sm">
+            <Checkbox defaultChecked /> Notify on critical findings
+          </label>
+          <label className="flex items-center gap-2 text-sm">
+            <Checkbox /> I agree to the terms
+          </label>
+          <Group className="gap-3">
+            <Switch defaultChecked aria-label="auto-remediate" />
+            <span className="text-sm">Auto-remediate</span>
+          </Group>
+          <Group className="gap-3">
+            <Switch aria-label="public" />
+            <span className="text-sm">Public registry</span>
+          </Group>
+        </Stack>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          RadioGroup
+        </h2>
+        <RadioGroup defaultValue="prod">
+          <label className="flex items-center gap-2 text-sm">
+            <RadioGroupItem value="prod" /> Production
+          </label>
+          <label className="flex items-center gap-2 text-sm">
+            <RadioGroupItem value="staging" /> Staging
+          </label>
+          <label className="flex items-center gap-2 text-sm">
+            <RadioGroupItem value="dev" /> Development
+          </label>
+        </RadioGroup>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Slider
+        </h2>
+        <Stack className="gap-6 max-w-md">
+          <Slider defaultValue={[40]} aria-label="threshold" />
+          <Slider defaultValue={[20, 80]} aria-label="range" />
+        </Stack>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm uppercase tracking-wider text-muted-foreground mb-4 font-mono">
+          Toggle / ToggleGroup
+        </h2>
+        <Stack className="gap-4">
+          <Group className="gap-2">
+            <Toggle defaultPressed aria-label="bold">
+              B
+            </Toggle>
+            <Toggle aria-label="italic">I</Toggle>
+            <Toggle variant="outline" aria-label="underline">
+              U
+            </Toggle>
+          </Group>
+          <ToggleGroup type="single" defaultValue="grid">
+            <ToggleGroupItem value="grid">grid</ToggleGroupItem>
+            <ToggleGroupItem value="list">list</ToggleGroupItem>
+            <ToggleGroupItem value="board">board</ToggleGroupItem>
+          </ToggleGroup>
+          <ToggleGroup type="multiple" defaultValue={["bold"]} size="sm">
+            <ToggleGroupItem value="bold">B</ToggleGroupItem>
+            <ToggleGroupItem value="italic">I</ToggleGroupItem>
+            <ToggleGroupItem value="underline">U</ToggleGroupItem>
+          </ToggleGroup>
         </Stack>
       </section>
     </div>
