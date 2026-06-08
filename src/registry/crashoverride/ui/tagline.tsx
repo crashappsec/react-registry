@@ -26,9 +26,11 @@ export const Tagline = React.forwardRef<
     )}
     {...props}
   >
-    <span className="t-tag text-[var(--color-traffic-red)]">Tag.</span>{" "}
-    <span className="t-track text-[var(--color-traffic-yellow)]">Track.</span>{" "}
-    <span className="t-trust text-[var(--color-traffic-green)]">Trust.</span>
+    {/* Colors set inline so the traffic-light hues always win over any
+        cascading `.co-tagline .t-*` rule — red -> amber -> green, everywhere. */}
+    <span className="t-tag" style={{ color: "var(--color-traffic-red)" }}>Tag.</span>{" "}
+    <span className="t-track" style={{ color: "var(--color-traffic-yellow)" }}>Track.</span>{" "}
+    <span className="t-trust" style={{ color: "var(--color-traffic-green)" }}>Trust.</span>
   </span>
 ))
 Tagline.displayName = "Tagline"

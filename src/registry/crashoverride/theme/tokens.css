@@ -493,9 +493,9 @@ img { max-width: 100%; height: auto; display: block; }
    treatment only — distinct from the brand/capability palette. The
    lockup is vivid by design, so on light backgrounds wrap it in the
    Black chip via `.co-tagline--plate`. */
-.co-tagline .t-tag   { color: var(--color-red-800); }   /* red — stop / attention */
-.co-tagline .t-track { color: #F5A623; }                /* amber — caution / in-motion */
-.co-tagline .t-trust { color: var(--color-atomic-lime); } /* green — go / trust */
+.co-tagline .t-tag   { color: var(--color-traffic-red); }    /* red — stop / attention */
+.co-tagline .t-track { color: var(--color-traffic-yellow); } /* amber — caution / in-motion */
+.co-tagline .t-trust { color: var(--color-traffic-green); }  /* green — go / trust */
 .co-tagline--plate {
   display: inline-block;
   background: var(--color-co-black);
