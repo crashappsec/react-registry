@@ -10,6 +10,11 @@ npx shadcn add @crashoverride/<name>
 
 > **Tag. Track. Trust.** — The Data Plane for Software in the AI Era.
 
+> **Scope.** This design system is for Crash Override's **marketing properties** (the
+> corporate site `crashoverride.com` and the marketing/ops admin) and **open-source
+> projects** (Chalk, Ocular, con4m, COMPASS). The **product Console / Platform is not in
+> scope yet** — don't adopt it there until it's been formally onboarded.
+
 ## Brand in one breath
 
 Dark-first surfaces · **Atomic-lime** primary (Fandango in light mode) · **JetBrains

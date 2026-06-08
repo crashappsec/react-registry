@@ -15,6 +15,11 @@ theme (the oklch light + dark token bridge plus the three brand fonts) on top of
 **64 branded components** and **3 composite blocks**. Any shadcn app installs branded
 UI with one command.
 
+> **Scope.** This design system is for Crash Override's **marketing properties** — the
+> corporate site (`crashoverride.com`) and the marketing/ops admin — and our **open-source
+> projects** (e.g. Chalk, Ocular, con4m, COMPASS). The **product Console / Platform is not
+> in scope yet** — don't adopt it there until it's been formally onboarded.
+
 <div style={{ margin: "1.5rem 0" }}>
   <Tagline />
 </div>
@@ -28,8 +33,9 @@ Dark-first surfaces · **Atomic-lime** primary (Fandango purple in light mode) �
 radius. The `theme` item ships the oklch light + dark bridge so every component tracks
 both modes automatically — no per-component theming required.
 
-The product is organised as a **capability spine**, and the whole brand — colour, copy,
-iconography — hangs off it:
+The brand is organised around a **capability spine** — the source of the accent and chart
+palette used across the marketing surfaces. (This is brand context; the product app that the
+capabilities describe is out of scope for this system, per **Scope** above.)
 
 | # | Capability | Colour | What it does |
 |---|------------|--------|--------------|
