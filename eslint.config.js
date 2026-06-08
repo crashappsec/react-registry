@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'public/r']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -17,6 +17,15 @@ export default defineConfig([
     ],
     languageOptions: {
       globals: globals.browser,
+    },
+  },
+  {
+    // Registry UI sources follow shadcn convention: a component file also
+    // exports its CVA variants (e.g. `buttonVariants`). Fast-refresh's
+    // single-export rule does not apply to vendored library components.
+    files: ['src/registry/crashoverride/ui/**/*.{ts,tsx}'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
     },
   },
 ])
