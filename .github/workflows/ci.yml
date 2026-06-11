@@ -23,4 +23,26 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run registry:build
+      - name: Materialized theme must not be stale
+        run: git diff --exit-code src/registry/crashoverride/theme/tokens.css
       - run: npx vitest run
+
+  # axe accessibility smoke-check: runs the Storybook test runner against the
+  # real static build, with the a11y addon in `test: error` mode so axe
+  # violations FAIL story tests. Radix supplies the interaction semantics; this
+  # keeps the rendered, themed output honest (names, roles, contrast).
+  a11y:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build-storybook
+      - name: Serve storybook-static
+        run: npx http-server storybook-static -p 6006 -s &
+      - run: npx wait-on http://127.0.0.1:6006
+      - run: npm run test:storybook -- --url http://127.0.0.1:6006

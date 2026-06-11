@@ -1,13 +1,20 @@
 /* ============================================================
    Crash Override — Design System
-   Global entry point. Consumers link THIS file.
-   Imports only — no rules declared here directly.
+   Stylesheet for the static preview pages in this folder
+   (index.html and guidelines/*.html). Imports only: no rules
+   declared here directly.
+
+   The local public/tokens/ copy was deleted; brand tokens are
+   now sourced from @crashoverride/brand-tokens. Because these
+   are plain static pages served from public/, the browser cannot
+   resolve a node_modules path, so the imports point at the live
+   brand-tokens Pages deploy (the published canon).
    ============================================================ */
 
-@import "./tokens/fonts.css";
-@import "./tokens/colors.css";
-@import "./tokens/typography.css";
-@import "./tokens/spacing.css";
-@import "./tokens/semantic.css";
-@import "./tokens/shadcn.css";
-@import "./tokens/base.css";
+@import "https://crashappsec.github.io/brand-visual/tokens/fonts.css";
+@import "https://crashappsec.github.io/brand-visual/tokens/colors.css";
+@import "https://crashappsec.github.io/brand-visual/tokens/typography.css";
+@import "https://crashappsec.github.io/brand-visual/tokens/spacing.css";
+@import "https://crashappsec.github.io/brand-visual/tokens/semantic.css";
+@import "https://crashappsec.github.io/brand-visual/tokens/shadcn.css";
+@import "https://crashappsec.github.io/brand-visual/tokens/base.css";

@@ -31,7 +31,11 @@ const preview: Preview = {
         ],
       },
     },
-    a11y: { test: "todo" },
+    // axe runs against every story; violations FAIL the story test (not just log),
+    // so a11y regressions are caught in CI. Radix gives us interaction semantics;
+    // this smoke-check keeps the rendered, themed output honest (contrast, names,
+    // roles). Per-story exceptions are scoped with a justifying comment, never blanket.
+    a11y: { test: "error" },
   },
   decorators: [
     // Paint the brand surface behind every story so components render themed in

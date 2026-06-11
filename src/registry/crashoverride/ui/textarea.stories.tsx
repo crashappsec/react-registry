@@ -50,6 +50,7 @@ export const WithValue: Story = {
   render: () => (
     <Textarea
       className="w-80"
+      aria-label="Incident notes"
       defaultValue={"SBOM verification failed on 3 of 12 artifacts.\nRe-run the scan after rotating the token."}
     />
   ),
@@ -57,12 +58,17 @@ export const WithValue: Story = {
 
 export const Disabled: Story = {
   render: () => (
-    <Textarea className="w-80" disabled defaultValue="This field is read-only." />
+    <Textarea
+      className="w-80"
+      disabled
+      aria-label="Incident notes (read-only)"
+      defaultValue="This field is read-only."
+    />
   ),
 }
 
 export const Invalid: Story = {
   render: () => (
-    <Textarea className="w-80" aria-invalid defaultValue="Too short." />
+    <Textarea className="w-80" aria-invalid aria-label="Incident notes" defaultValue="Too short." />
   ),
 }
