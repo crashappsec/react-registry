@@ -10,8 +10,14 @@ The official Crash Override logo art, shipped with the design system. Each mark 
 at a real size on an appropriate backdrop — white-fill marks on the brand black, black-fill
 marks on Thunder white — so the contrast you would actually ship is what you see here.
 
-Files live in `public/brand-assets/` and are served by Storybook via `staticDirs`. Pull the
-exact file you need; do not recolour or redraw the art.
+The local `public/brand-assets/` copy was deleted; the canon now lives in
+`@crashoverride/brand-tokens` (the brand-visual repo). Pull the exact file you need;
+do not recolour or redraw the art.
+
+{/* TODO(Task 5): re-source these brand assets from brand-visual Pages properly
+    (e.g. install-time copy, an <AssetCard> base-URL prop, or a packaged import).
+    The img src values below are a minimal stopgap pointing straight at the live
+    brand-visual Pages deploy so Storybook still builds after the local copy was removed. */}
 
 ## Icon mark
 
@@ -20,42 +26,42 @@ where the wordmark would not be legible.
 
 <AssetGrid>
   <AssetCard
-    src="/brand-assets/logos/icon-color.svg"
+    src="https://crashappsec.github.io/brand-visual/assets/logos/icon-color.svg"
     alt="Crash Override icon, full colour"
     label="Icon — colour"
     bg="dark"
     note="Default mark. Use on dark surfaces (the brand black)."
   />
   <AssetCard
-    src="/brand-assets/logos/icon-white.svg"
+    src="https://crashappsec.github.io/brand-visual/assets/logos/icon-white.svg"
     alt="Crash Override icon, white"
     label="Icon — white"
     bg="dark"
     note="Monochrome knock-out. Use on dark or photographic backgrounds."
   />
   <AssetCard
-    src="/brand-assets/logos/icon-black-bg.svg"
+    src="https://crashappsec.github.io/brand-visual/assets/logos/icon-black-bg.svg"
     alt="Crash Override icon on black tile"
     label="Icon — black tile"
     bg="light"
     note="Pre-composited dark tile. Use as an app icon / avatar on light pages."
   />
   <AssetCard
-    src="/brand-assets/logos/icon-color.png"
+    src="https://crashappsec.github.io/brand-visual/assets/logos/icon-color.png"
     alt="Crash Override icon, full colour (PNG)"
     label="Icon — colour (PNG)"
     bg="dark"
     note="Raster fallback where SVG is unsupported."
   />
   <AssetCard
-    src="/brand-assets/logos/icon-white.png"
+    src="https://crashappsec.github.io/brand-visual/assets/logos/icon-white.png"
     alt="Crash Override icon, white (PNG)"
     label="Icon — white (PNG)"
     bg="dark"
     note="Raster knock-out for email / legacy clients."
   />
   <AssetCard
-    src="/brand-assets/logos/icon-black-bg.png"
+    src="https://crashappsec.github.io/brand-visual/assets/logos/icon-black-bg.png"
     alt="Crash Override icon on black tile (PNG)"
     label="Icon — black tile (PNG)"
     bg="light"
@@ -70,7 +76,7 @@ documents. Choose the fill that contrasts with your surface.
 
 <AssetGrid>
   <AssetCard
-    src="/brand-assets/logos/iconlogo-white.png"
+    src="https://crashappsec.github.io/brand-visual/assets/logos/iconlogo-white.png"
     alt="Crash Override icon + wordmark, white"
     label="Lockup — white"
     bg="dark"
@@ -78,7 +84,7 @@ documents. Choose the fill that contrasts with your surface.
     note="Use on dark surfaces — the default product header lockup."
   />
   <AssetCard
-    src="/brand-assets/logos/iconlogo-black.png"
+    src="https://crashappsec.github.io/brand-visual/assets/logos/iconlogo-black.png"
     alt="Crash Override icon + wordmark, black"
     label="Lockup — black"
     bg="light"
@@ -94,7 +100,7 @@ The "Crash Override" wordmark on its own, for places that already carry the mark
 
 <AssetGrid>
   <AssetCard
-    src="/brand-assets/logos/logo-white.png"
+    src="https://crashappsec.github.io/brand-visual/assets/logos/logo-white.png"
     alt="Crash Override wordmark, white"
     label="Wordmark — white"
     bg="dark"
@@ -102,7 +108,7 @@ The "Crash Override" wordmark on its own, for places that already carry the mark
     note="Use on dark surfaces."
   />
   <AssetCard
-    src="/brand-assets/logos/logo-black.png"
+    src="https://crashappsec.github.io/brand-visual/assets/logos/logo-black.png"
     alt="Crash Override wordmark, black"
     label="Wordmark — black"
     bg="light"
@@ -131,7 +137,7 @@ Larger brand artwork. The CRT television is the hero illustration (light and dar
 
 <AssetGrid>
   <AssetCard
-    src="/brand-assets/illustrations/crt-tv.svg"
+    src="https://crashappsec.github.io/brand-visual/assets/illustrations/crt-tv.svg"
     alt="CRT television illustration"
     label="CRT TV"
     bg="light"
@@ -139,7 +145,7 @@ Larger brand artwork. The CRT television is the hero illustration (light and dar
     note="Hero illustration — light variant."
   />
   <AssetCard
-    src="/brand-assets/illustrations/crt-tv-dark.svg"
+    src="https://crashappsec.github.io/brand-visual/assets/illustrations/crt-tv-dark.svg"
     alt="CRT television illustration, dark"
     label="CRT TV — dark"
     bg="dark"
@@ -147,7 +153,7 @@ Larger brand artwork. The CRT television is the hero illustration (light and dar
     note="Hero illustration — dark variant."
   />
   <AssetCard
-    src="/brand-assets/illustrations/og-default.svg"
+    src="https://crashappsec.github.io/brand-visual/assets/illustrations/og-default.svg"
     alt="Default Open Graph social image"
     label="OG default"
     bg="surface"
