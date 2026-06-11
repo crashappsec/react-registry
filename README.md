@@ -161,6 +161,7 @@ npm install
 npm run dev             # specimen app — visual QA of every registry item
 npm run registry:build  # compile registry.json -> public/r/*.json (shadcn build)
 npm run test            # vitest (smoke tests + build validation)
+npm run test:storybook  # axe a11y smoke-check (needs a served storybook-static)
 npm run build           # type-check + vite production build
 npm run lint            # eslint
 ```
@@ -170,6 +171,33 @@ visual review; it is the human gate. `src/test/registry-build.test.ts` is the ma
 gate that validates the build output.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for the component recipe (how to add a new item).
+
+## Accessibility
+
+The components are built on **Radix primitives, which carry the interaction
+accessibility** (keyboard, focus management, ARIA roles and states) for us. On top of
+that, an **axe smoke-check keeps the rendered, themed output honest**: the Storybook
+a11y addon runs in `test: error` mode, so every story is scanned by axe and any
+violation (missing accessible name, bad role nesting, insufficient contrast) **fails the
+story test**. The `a11y` CI job builds Storybook, serves it, and runs the test runner on
+every push and PR.
+
+Run it locally:
+
+```bash
+npm run build-storybook
+npx http-server storybook-static -p 6006 -s &
+npx wait-on http://127.0.0.1:6006
+npm run test:storybook -- --url http://127.0.0.1:6006
+```
+
+> **Known contrast debt.** A handful of brand-palette tones (Fandango cobalt and
+> Jazzberry magenta text, and `muted-foreground` micro-text) sit just under the 4.5:1
+> AA ratio at small sizes on the dark surface. Those values come from the
+> [brand-visual](https://github.com/crashappsec/brand-visual) token canon (materialized
+> into `theme/tokens.css` and gated by CI here), so the fix belongs upstream. Those few
+> stories scope **only** the `color-contrast` rule off, each with a justifying comment;
+> every other axe rule still runs on them.
 
 ## Plan & spec
 

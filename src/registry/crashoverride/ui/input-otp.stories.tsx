@@ -37,7 +37,9 @@ function OtpField({
     chunks.push(Array.from({ length: Math.min(per, maxLength - i) }, (_, k) => i + k))
   }
   return (
-    <InputOTP maxLength={maxLength} {...props}>
+    // aria-label names the underlying input-otp <input> so the field has an
+    // accessible name (a real form pairs it with a visible Label).
+    <InputOTP maxLength={maxLength} aria-label="One-time passcode" {...props}>
       {chunks.map((chunk, ci) => (
         <React.Fragment key={ci}>
           {ci > 0 && <InputOTPSeparator />}
@@ -122,6 +124,7 @@ export const WithOnComplete: Story = {
       <div className="flex flex-col gap-3">
         <InputOTP
           maxLength={6}
+          aria-label="One-time passcode"
           value={value}
           onChange={(v) => {
             setValue(v)

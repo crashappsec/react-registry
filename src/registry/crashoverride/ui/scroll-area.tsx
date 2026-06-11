@@ -25,6 +25,10 @@ const ScrollArea = React.forwardRef<
   >
     <ScrollAreaPrimitive.Viewport
       data-slot="scroll-area-viewport"
+      // tabIndex makes the scrollable region reachable by keyboard so a
+      // keyboard-only user can scroll it (axe: scrollable-region-focusable).
+      // The focus ring above gives the keyboard focus a visible indicator.
+      tabIndex={0}
       className="size-full rounded-[inherit] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
     >
       {children}

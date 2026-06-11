@@ -12,7 +12,8 @@
     "theme:build": "node scripts/build-theme-tokens.mjs",
     "registry:build": "npm run theme:build && shadcn build && node scripts/version-registry.mjs",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test:storybook": "test-storybook"
   },
   "dependencies": {
     "@crashoverride/brand-tokens": "github:crashappsec/brand-visual#v1.0.1",
@@ -68,6 +69,7 @@
     "@storybook/addon-docs": "^10.4.2",
     "@storybook/addon-themes": "^10.4.2",
     "@storybook/react-vite": "^10.4.2",
+    "@storybook/test-runner": "^0.24.4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@types/node": "^24.13.1",
@@ -80,12 +82,14 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "eslint-plugin-storybook": "^10.4.2",
     "globals": "^17.6.0",
+    "http-server": "^14.1.1",
     "jsdom": "^29.1.1",
     "shadcn": "^4.10.0",
     "storybook": "^10.4.2",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
     "vite": "^8.0.12",
-    "vitest": "^4.1.8"
+    "vitest": "^4.1.8",
+    "wait-on": "^9.0.10"
   }
 }

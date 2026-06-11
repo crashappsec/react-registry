@@ -87,13 +87,14 @@ export const WithIcons: Story = {
   ),
 }
 
-/** Disabled. */
+/** Disabled. (`aria-label` names the inner field; a real form pairs it with a Label.) */
 export const Disabled: Story = {
   render: () => (
     <InputGroup
       groupClassName="w-72"
       prefix="https://"
       disabled
+      aria-label="Organization slug (disabled)"
       defaultValue="locked-org"
     />
   ),
@@ -106,6 +107,7 @@ export const Invalid: Story = {
       groupClassName="w-72"
       prefix="@"
       aria-invalid
+      aria-label="Username"
       defaultValue="bad value"
     />
   ),

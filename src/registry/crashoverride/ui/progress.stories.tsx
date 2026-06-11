@@ -38,24 +38,29 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-/** Playground — drag the `value` slider in Controls. */
-export const Playground: Story = {}
+/**
+ * Playground. Drag the `value` slider in Controls. `aria-label` names the
+ * progressbar so assistive tech can announce it (a bare bar has no text node).
+ */
+export const Playground: Story = {
+  args: { "aria-label": "Scan progress" },
+}
 
 export const Empty: Story = {
-  args: { value: 0 },
+  args: { value: 0, "aria-label": "Scan progress" },
 }
 
 export const Half: Story = {
-  args: { value: 50 },
+  args: { value: 50, "aria-label": "Scan progress" },
 }
 
 export const Complete: Story = {
-  args: { value: 100 },
+  args: { value: 100, "aria-label": "Scan progress" },
 }
 
 /** A recoloured fill — amber via the indicator selector. */
 export const AmberFill: Story = {
-  args: { value: 42, className: "w-72 [&>div]:bg-chart-3" },
+  args: { value: 42, className: "w-72 [&>div]:bg-chart-3", "aria-label": "Scan progress" },
 }
 
 /** Several scan stages at a glance. */
@@ -72,7 +77,7 @@ export const Steps: Story = {
             <span>{label}</span>
             <span className="tabular-nums">{value}%</span>
           </div>
-          <Progress value={value as number} />
+          <Progress value={value as number} aria-label={label as string} />
         </div>
       ))}
     </div>
@@ -90,6 +95,6 @@ export const Animated: Story = {
       )
       return () => clearInterval(id)
     }, [])
-    return <Progress value={value} className="w-72" />
+    return <Progress value={value} className="w-72" aria-label="Indexing" />
   },
 }

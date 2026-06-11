@@ -48,36 +48,48 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-/** Fully interactive — drag the thumb, or drive bounds from Controls. */
+/**
+ * Fully interactive. Drag the thumb, or drive bounds from Controls.
+ * `aria-label` names the thumb so assistive tech can announce the value (a bare
+ * thumb has no text node). Radix forwards it onto the slider thumb element.
+ */
 export const Playground: Story = {
-  render: (args) => <Slider {...args} defaultValue={[40]} className="w-72" />,
+  render: (args) => (
+    <Slider {...args} defaultValue={[40]} className="w-72" aria-label="Severity threshold" />
+  ),
 }
 
 /** A single thumb at a fixed start value. */
 export const SingleThumb: Story = {
-  render: () => <Slider defaultValue={[25]} className="w-72" />,
+  render: () => <Slider defaultValue={[25]} className="w-72" aria-label="Severity threshold" />,
 }
 
 /** Two thumbs — a min/max range selection. */
 export const Range: Story = {
-  render: () => <Slider defaultValue={[20, 70]} className="w-72" />,
+  render: () => (
+    <Slider defaultValue={[20, 70]} className="w-72" aria-label="Score range" />
+  ),
 }
 
 /** Stepped — snaps to multiples of 10. */
 export const Stepped: Story = {
-  render: () => <Slider defaultValue={[50]} step={10} className="w-72" />,
+  render: () => (
+    <Slider defaultValue={[50]} step={10} className="w-72" aria-label="Sampling rate" />
+  ),
 }
 
 /** Disabled. */
 export const Disabled: Story = {
-  render: () => <Slider defaultValue={[40]} disabled className="w-72" />,
+  render: () => (
+    <Slider defaultValue={[40]} disabled className="w-72" aria-label="Severity threshold (disabled)" />
+  ),
 }
 
 /** Vertical orientation. */
 export const Vertical: Story = {
   render: () => (
     <div className="h-44">
-      <Slider defaultValue={[60]} orientation="vertical" />
+      <Slider defaultValue={[60]} orientation="vertical" aria-label="Volume" />
     </div>
   ),
 }
@@ -89,7 +101,7 @@ export const Controlled: Story = {
     return (
       <div className="flex w-72 flex-col gap-3">
         <p className="font-mono text-[11px] text-muted-foreground">value: {value[0]}</p>
-        <Slider value={value} onValueChange={setValue} />
+        <Slider value={value} onValueChange={setValue} aria-label="Severity threshold" />
       </div>
     )
   },

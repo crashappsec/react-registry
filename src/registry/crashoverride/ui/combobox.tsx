@@ -81,6 +81,11 @@ function Combobox({
           type="button"
           role="combobox"
           aria-expanded={open}
+          // A role="combobox" takes its accessible name from a label, not its
+          // text content, so the placeholder (which states the field's purpose)
+          // names the trigger when nothing is selected (axe: button-name).
+          // Consumers can still wrap it with a visible <Label> for redundancy.
+          aria-label={placeholder}
           disabled={disabled}
           data-slot="combobox-trigger"
           className={cn(

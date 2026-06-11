@@ -46,26 +46,32 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-/** Fully interactive — click to toggle, or drive `checked` from Controls. */
-export const Playground: Story = {}
+/**
+ * Fully interactive. Click to toggle, or drive `checked` from Controls.
+ * `aria-label` gives the bare control an accessible name (a real consumer would
+ * pair it with a <Label htmlFor>, as the WithLabel story shows).
+ */
+export const Playground: Story = {
+  args: { "aria-label": "Verify SBOM on every build" },
+}
 
 export const Checked: Story = {
-  args: { defaultChecked: true },
+  args: { defaultChecked: true, "aria-label": "Verify SBOM on every build" },
 }
 
 export const Unchecked: Story = {
-  args: { defaultChecked: false },
+  args: { defaultChecked: false, "aria-label": "Verify SBOM on every build" },
 }
 
 export const Indeterminate: Story = {
-  args: { checked: "indeterminate" },
+  args: { checked: "indeterminate", "aria-label": "Select all rows" },
 }
 
 export const Disabled: Story = {
   render: () => (
     <div className="flex items-center gap-4">
-      <Checkbox disabled />
-      <Checkbox disabled defaultChecked />
+      <Checkbox disabled aria-label="Verify SBOM (unchecked, disabled)" />
+      <Checkbox disabled defaultChecked aria-label="Verify SBOM (checked, disabled)" />
     </div>
   ),
 }

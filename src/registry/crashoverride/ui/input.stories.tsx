@@ -73,14 +73,17 @@ export const Invalid: Story = {
   args: { "aria-invalid": true, defaultValue: "not-an-email" },
 }
 
-/** Every state stacked for comparison. */
+/**
+ * Every state stacked for comparison. Each input carries an `aria-label` so the
+ * bare fields have an accessible name (a real form pairs them with Label/Field).
+ */
 export const States: Story = {
   render: () => (
     <div className="flex w-72 flex-col gap-3">
-      <Input placeholder="Default" />
-      <Input defaultValue="With value" />
-      <Input disabled defaultValue="Disabled" />
-      <Input aria-invalid defaultValue="Invalid" />
+      <Input placeholder="Default" aria-label="Default state" />
+      <Input defaultValue="With value" aria-label="With value state" />
+      <Input disabled defaultValue="Disabled" aria-label="Disabled state" />
+      <Input aria-invalid defaultValue="Invalid" aria-label="Invalid state" />
     </div>
   ),
 }

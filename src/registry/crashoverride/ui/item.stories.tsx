@@ -63,6 +63,13 @@ export const Playground: Story = {
 
 /** A member row with an avatar and role badge. */
 export const Member: Story = {
+  // The cobalt (Fandango) role badge renders brand-palette text on a dark pill
+  // below 4.5:1, the same brand-tokens contrast property documented on the
+  // Badge stories. The colour is owned by the brand-visual canon. Scope OFF only
+  // color-contrast so the row's structure/name checks still run.
+  parameters: {
+    a11y: { config: { rules: [{ id: "color-contrast", enabled: false }] } },
+  },
   render: () => (
     <Item
       className="w-96"
