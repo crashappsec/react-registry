@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "theme:build": "node scripts/build-theme-tokens.mjs",
-    "registry:build": "npm run theme:build && shadcn build",
+    "registry:build": "npm run theme:build && shadcn build && node scripts/version-registry.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

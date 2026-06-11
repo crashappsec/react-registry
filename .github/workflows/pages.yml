@@ -25,11 +25,16 @@ jobs:
       # Build the browsable Storybook docs site (outputs storybook-static/).
       - run: npm run build-storybook
       # Assemble the deploy dir: Storybook at the root, registry JSON at /r/.
+      # public/r/ contains the latest-major files plus the r/v{M}/ subdir from
+      # version-registry.mjs. frozen/r/ (committed, never regenerated) holds
+      # prior-major snapshots; its contents overlay _site/r/ so pinned consumers
+      # continue to resolve their frozen major.
       - name: Assemble Pages site
         run: |
           rm -rf _site
           cp -r storybook-static _site
           cp -r public/r _site/r
+          if [ -d frozen/r ]; then cp -r frozen/r/. _site/r/; fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

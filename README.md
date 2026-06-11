@@ -54,6 +54,42 @@ npx shadcn add @crashoverride/stat-card-row   # a composite block
 Each item resolves to JSON served from GitHub Pages at
 `https://crashappsec.github.io/react-design-system/r/<name>.json`.
 
+## Pinning to a registry major version
+
+The unversioned path (`r/{name}.json`) always resolves to the current major. If you
+need a stable pin -- for example, when you want to control exactly when you absorb
+breaking token changes -- use the versioned path instead:
+
+```jsonc
+// components.json
+{
+  "registries": {
+    "@crashoverride": "https://crashappsec.github.io/react-design-system/r/v1/{name}.json"
+  }
+}
+```
+
+**Support policy.** The latest two released majors are actively maintained. Once a
+third major ships, the oldest major enters its end-of-life window; its frozen JSON
+remains served from GitHub Pages but receives no further updates.
+
+**How versioning works.** After `shadcn build` emits `public/r/*.json`,
+`scripts/version-registry.mjs` copies those files into `public/r/v{M}/`. The
+unversioned path is the latest-major alias by construction. When a breaking change
+requires a new major, the prior `public/r/v{M}/` snapshot is committed under
+`frozen/r/v{M}/` and is served verbatim by Pages from that point forward; it is
+never regenerated from source.
+
+**Composing pinning with automated refresh.** The `registry-refresh.yml` workflow
+(described in "Staying current" below) re-runs `npx shadcn add --overwrite` using
+whichever URL is in your `components.json`:
+
+- **Pinned consumers** (`r/v1/{name}.json`) re-vendor the latest files within their
+  major. They receive non-breaking updates automatically and absorb a major bump only
+  when they deliberately update the version number in `components.json`.
+- **Unpinned consumers** (`r/{name}.json`) always track the current major. The
+  refresh workflow pulls the newest files on each run, including across major bumps.
+
 ## Staying current — automated refresh PRs
 
 shadcn installs are **vendored copies**: once added, your app holds a snapshot and
