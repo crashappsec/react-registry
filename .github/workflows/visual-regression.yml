@@ -82,10 +82,12 @@ jobs:
           esac
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- src/test/__screenshots__; then
+          # Stage first: new per-platform baselines (e.g. -linux) are untracked,
+          # and git diff --quiet ignores untracked files. Detect via the index.
+          git add src/test/__screenshots__
+          if git diff --cached --quiet -- src/test/__screenshots__; then
             echo "No baseline changes."
             exit 0
           fi
-          git add src/test/__screenshots__
           git commit -m "test(visual): refresh CI (Linux) visual-regression baselines"
           git push origin "HEAD:$TARGET_REF"
