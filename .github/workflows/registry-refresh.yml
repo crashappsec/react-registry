@@ -7,12 +7,24 @@
 #
 # Requirements in the consuming repo:
 #   - components.json with the @crashoverride registry namespace configured
+#   - a tsconfig.json reachable from the working directory (the shadcn CLI
+#     refuses to run without one)
 #   - Org/repo setting "Allow GitHub Actions to create and approve pull
 #     requests" enabled (Settings > Actions > General)
 #
-# Note: PRs opened with the default GITHUB_TOKEN do not trigger the consumer's
-# own CI. Pass a PAT or GitHub App token via the `token` secret to get CI runs
-# on refresh PRs.
+# Design notes:
+#   - The refresh commit is created through the GitHub GraphQL API
+#     (createCommitOnBranch), not git push. API-created commits are signed by
+#     GitHub automatically, which satisfies org rulesets that require verified
+#     signatures (a plain bot git push is rejected with GH013).
+#   - Change detection stages first (git add -A) and inspects the index, so
+#     newly created files are detected; git diff --quiet alone is blind to
+#     untracked files and produced false "already current" results.
+#   - The branch name is suffixed per working directory so monorepo callers
+#     with several apps do not race each other on one branch.
+#   - PRs opened with the default GITHUB_TOKEN do not trigger the consumer's
+#     own CI. Pass a PAT or GitHub App token via the `token` secret to get CI
+#     runs on refresh PRs.
 
 name: Design registry refresh
 
@@ -29,7 +41,7 @@ on:
         default: "."
     secrets:
       token:
-        description: "Token used to push and open the PR (defaults to github.token)"
+        description: "Token used for the commit and PR (defaults to github.token)"
         required: false
 
 permissions:
@@ -60,29 +72,96 @@ jobs:
             exit 0
           fi
           for item in $ITEMS; do
-            npx --yes shadcn@latest add "@crashoverride/${item}" --overwrite --yes
+            out=$(npx --yes shadcn@latest add "@crashoverride/${item}" --overwrite --yes 2>&1) || rc=$?
+            echo "$out"
+            if [ "${rc:-0}" -ne 0 ]; then
+              echo "::error::shadcn exited non-zero for ${item}"
+              exit 1
+            fi
+            case "$out" in
+              *"Something went wrong"*)
+                echo "::error::shadcn reported a failure for ${item} (often a missing tsconfig.json)"
+                exit 1 ;;
+            esac
           done
-          if git diff --quiet; then
+          # Stage everything first: freshly created files are untracked and
+          # invisible to git diff --quiet. The index is the source of truth.
+          git add -A
+          if git diff --cached --quiet; then
             echo "Already current with the registry."
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
+            echo "Changes detected:"
+            git diff --cached --name-status
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Open refresh PR
+      - name: Open refresh PR (verified commit via API)
         if: steps.refresh.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.token || github.token }}
           ITEMS: ${{ inputs.items }}
+          WORKDIR: ${{ inputs.working-directory }}
         run: |
-          BRANCH="design-refresh/registry"
-          git config user.name "co-design-refresh"
-          git config user.email "design-system@crashoverride.com"
-          git checkout -B "$BRANCH"
-          git add -A
-          git commit -m "chore(design): refresh Crash Override registry items (${ITEMS})"
-          git push -f origin "$BRANCH"
+          set -euo pipefail
+          # Per-app branch so monorepo callers do not collide on one branch.
+          if [ "$WORKDIR" = "." ] || [ -z "$WORKDIR" ]; then
+            BRANCH="design-refresh/registry"
+          else
+            SUFFIX=$(printf '%s' "$WORKDIR" | tr -c 'A-Za-z0-9' '-' | sed 's/^-*//; s/-*$//')
+            BRANCH="design-refresh/registry-${SUFFIX}"
+          fi
+          BASE_OID=$(git rev-parse HEAD)
+          BASE_BRANCH="$GITHUB_REF_NAME"
+
+          # Build the createCommitOnBranch payload from the staged changes.
+          python3 - "$BRANCH" "$BASE_OID" <<'PYEOF'
+          import base64, json, os, subprocess, sys
+          branch, base_oid = sys.argv[1], sys.argv[2]
+          repo = os.environ["GITHUB_REPOSITORY"]
+          raw = subprocess.run(
+              ["git", "diff", "--cached", "--name-status", "-z"],
+              capture_output=True, text=True, check=True).stdout
+          parts = raw.split("\0")
+          adds, dels, i = [], [], 0
+          while i < len(parts) and parts[i]:
+              status, path = parts[i], parts[i + 1]
+              i += 2
+              if status.startswith("R"):
+                  new = parts[i]; i += 1
+                  dels.append({"path": path})
+                  adds.append({"path": new, "contents": base64.b64encode(open(new, "rb").read()).decode()})
+              elif status.startswith("D"):
+                  dels.append({"path": path})
+              else:
+                  adds.append({"path": path, "contents": base64.b64encode(open(path, "rb").read()).decode()})
+          fc = {"additions": adds}
+          if dels:
+              fc["deletions"] = dels
+          payload = {
+              "query": "mutation($input: CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid url}}}",
+              "variables": {"input": {
+                  "branch": {"repositoryNameWithOwner": repo, "branchName": branch},
+                  "message": {"headline": "chore(design): refresh Crash Override registry items"},
+                  "expectedHeadOid": base_oid,
+                  "fileChanges": fc}}}
+          with open("/tmp/ccob.json", "w") as f:
+              json.dump(payload, f)
+          print(f"payload: {len(adds)} addition(s), {len(dels)} deletion(s)")
+          PYEOF
+
+          # Create or reset the branch ref at the base commit, then commit via
+          # the GraphQL API so the commit is signed by GitHub (verified).
+          if gh api "repos/$GITHUB_REPOSITORY/git/refs/heads/$BRANCH" >/dev/null 2>&1; then
+            gh api -X PATCH "repos/$GITHUB_REPOSITORY/git/refs/heads/$BRANCH" -f sha="$BASE_OID" -F force=true >/dev/null
+          else
+            gh api -X POST "repos/$GITHUB_REPOSITORY/git/refs" -f ref="refs/heads/$BRANCH" -f sha="$BASE_OID" >/dev/null
+          fi
+          gh api graphql --input /tmp/ccob.json
+
           gh pr create \
+            --head "$BRANCH" \
+            --base "$BASE_BRANCH" \
             --title "chore(design): refresh Crash Override design system" \
             --body "Automated refresh: the upstream registry (crashappsec/react-design-system) published changes to: \`${ITEMS}\`. This PR re-vendors those items via \`npx shadcn add --overwrite\`. Review the visual diff and merge to stay on-brand." \
-            || echo "PR already open for $BRANCH; updated in place."
+            || echo "PR already open for $BRANCH; branch updated in place."
