@@ -4,7 +4,7 @@
 
 @custom-variant dark (&:is(.dark *, [data-theme="dark"] *)); /* both .dark and the data-theme convention (admin uses data-theme) */
 
-/* Brand fonts — self-hosted-first, matching brand-visual (the token canon).
+/* Brand fonts: self-hosted-first, matching brand-visual (the token canon).
    Primary src is the brand-visual vendored OFL woff2 served from its Pages
    site; the gstatic latin-subset woff2 stays as a same-declaration fallback
    so consumers who cannot reach the Pages host are not broken.
