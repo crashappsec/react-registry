@@ -23,4 +23,6 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run registry:build
+      - name: Materialized theme must not be stale
+        run: git diff --exit-code src/registry/crashoverride/theme/tokens.css
       - run: npx vitest run
