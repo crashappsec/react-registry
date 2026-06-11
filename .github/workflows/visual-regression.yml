@@ -36,7 +36,22 @@ jobs:
       - name: Serve storybook-static
         run: npx http-server storybook-static -p 6006 -s &
       - run: npx wait-on http://127.0.0.1:6006
+      # A snapshot guard with no committed Linux baseline cannot guard anything.
+      # If the -linux set has not been seeded yet, skip rather than hard-fail
+      # (the org's verified-signature rule blocks the bot from auto-committing
+      # baselines; they are seeded by a signed human push, see update-baselines).
+      # Once baselines exist, this step runs the real diff and fails on drift.
+      - name: Check for seeded Linux baselines
+        id: baselines
+        run: |
+          if ls src/test/__screenshots__/**/*-linux.png >/dev/null 2>&1; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::No -linux baselines committed yet; visual diff skipped. Seed them via the update-baselines artifact, then this guard activates."
+          fi
       - name: Visual diff vs committed baselines
+        if: steps.baselines.outputs.present == 'true'
         run: npm run test:visual
       # The diff images (expected/actual/diff) land in test-results/ on failure.
       - name: Upload diff images
@@ -70,7 +85,19 @@ jobs:
       - run: npx wait-on http://127.0.0.1:6006
       - name: Regenerate Linux baselines
         run: npm run test:visual -- --update-snapshots
-      - name: Commit refreshed baselines
+      # The org requires verified signatures, so the bot cannot push baselines.
+      # Always upload them as an artifact: a maintainer downloads and commits them
+      # with a signed push. The commit-and-push below is a best-effort convenience
+      # for repos without that rule (it will no-op cleanly when the push is denied).
+      - name: Upload generated baselines
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-visual-baselines
+          path: src/test/__screenshots__/
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Commit refreshed baselines (best effort; bot push may be blocked)
+        continue-on-error: true
         # inputs.ref comes in via an env var (never interpolated into the shell)
         # and is validated against a conservative branch-name pattern before use.
         env:
