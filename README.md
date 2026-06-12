@@ -123,6 +123,10 @@ PAT/App token as the `token` secret if you want CI on refresh PRs.
 ## What's in the registry
 
 - **theme** — brand token bridge (oklch light+dark) + JetBrains Mono / Inter / Geist Mono.
+- **gibson-theme** — **INTERNAL ONLY.** Dark-led theme for the Gibson admin portal
+  (gibson-hackers.com) and other internal apps: near-black indigo surfaces, phosphor-lime
+  primary. Never use it on crashoverride.com or any public/customer-facing property —
+  public properties use `theme`. Brand spec: [`docs/gibson-home-spec.md`](./docs/gibson-home-spec.md).
 - **Components (64)** — real shadcn/Radix components themed for the brand: layout
   primitives, forms, overlays, navigation, data display, plus brand-specific extras
   (`status-badge`, `tag`, `code-panel`, `typography`, `chart`, `logo`, `tagline`).

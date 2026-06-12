@@ -1,8 +1,11 @@
-/* Gibson theme — serves the Gibson admin portal (gibson-hackers.com).
+/* Gibson theme — INTERNAL ONLY.
+   Serves the Gibson admin portal (gibson-hackers.com) and other internal
+   apps. Never vendor this onto crashoverride.com or any public or
+   customer-facing property — public sites use the `theme` registry item.
    Dark-led: deep near-black indigo surfaces, phosphor-lime primary, hairline
    borders. Light mode is the proven corp light block (verbatim) so the in-app
-   toggle remains usable. The corporate site (crashoverride.com) uses the
-   `theme` registry item instead — this file is a 1:1 structural swap for it. */
+   toggle remains usable. This file is a 1:1 structural swap for `theme`.
+   Canonical brand spec + approved home-board values: docs/gibson-home-spec.md */
 
 @import "tailwindcss";
 @import "tw-animate-css";
