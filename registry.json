@@ -22,12 +22,34 @@
       ]
     },
     {
+      "name": "gibson-theme",
+      "type": "registry:style",
+      "title": "Gibson theme",
+      "description": "INTERNAL ONLY \u2014 Gibson admin portal + internal apps (gibson-hackers.com). Dark-led near-black indigo + phosphor-lime. Never for crashoverride.com or any public property; public sites use `theme`.",
+      "files": [
+        {
+          "path": "src/registry/crashoverride/gibson-theme/globals.css",
+          "type": "registry:file",
+          "target": "app/globals.css"
+        },
+        {
+          "path": "src/registry/crashoverride/theme/tokens.css",
+          "type": "registry:file",
+          "target": "app/tokens.css"
+        }
+      ]
+    },
+    {
       "name": "layout",
       "type": "registry:ui",
       "title": "Layout primitives",
-      "description": "Stack, Group, Center, Box, Grid — className-first flex/grid primitives with asChild support.",
-      "dependencies": ["@radix-ui/react-slot"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Stack, Group, Center, Box, Grid \u2014 className-first flex/grid primitives with asChild support.",
+      "dependencies": [
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/layout.tsx",
@@ -40,7 +62,10 @@
       "type": "registry:ui",
       "title": "Divider",
       "description": "Hairline rule (brand name for a separator). Horizontal or vertical. Thin alias that re-exports Separator.",
-      "registryDependencies": ["@crashoverride/theme", "@crashoverride/separator"],
+      "registryDependencies": [
+        "@crashoverride/theme",
+        "@crashoverride/separator"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/divider.tsx",
@@ -52,9 +77,13 @@
       "name": "separator",
       "type": "registry:ui",
       "title": "Separator",
-      "description": "Hairline divider keyed to the --border token — horizontal or vertical, decorative by default. Built on Radix Separator.",
-      "dependencies": ["@radix-ui/react-separator"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Hairline divider keyed to the --border token \u2014 horizontal or vertical, decorative by default. Built on Radix Separator.",
+      "dependencies": [
+        "@radix-ui/react-separator"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/separator.tsx",
@@ -66,9 +95,14 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Branded action button — neon-lime primary, outline secondary, cobalt enterprise, quiet ghost.",
-      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Branded action button \u2014 neon-lime primary, outline secondary, cobalt enterprise, quiet ghost.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/button.tsx",
@@ -80,8 +114,10 @@
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "Flat surface primitive — slate card bg, hairline border, no heavy shadow. Optional capability accent bar and interactive hover.",
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Flat surface primitive \u2014 slate card bg, hairline border, no heavy shadow. Optional capability accent bar and interactive hover.",
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/card.tsx",
@@ -94,8 +130,13 @@
       "type": "registry:ui",
       "title": "Badge",
       "description": "Status / label pill keyed to the brand palette. Lowercase mono voice, soft + outline fills, optional leading dot.",
-      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/badge.tsx",
@@ -107,8 +148,10 @@
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
-      "description": "Text field on the dark surface — hairline --input border, neon focus ring, sharp brand radius.",
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Text field on the dark surface \u2014 hairline --input border, neon focus ring, sharp brand radius.",
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/input.tsx",
@@ -121,8 +164,12 @@
       "type": "registry:ui",
       "title": "Label",
       "description": "Form field label in the brand's uppercase mono voice. Built on Radix Label for click-to-focus.",
-      "dependencies": ["@radix-ui/react-label"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "dependencies": [
+        "@radix-ui/react-label"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/label.tsx",
@@ -135,7 +182,10 @@
       "type": "registry:ui",
       "title": "Field",
       "description": "Composes Label + control + help/error into one accessible field. Wires aria-describedby and aria-invalid onto the control.",
-      "registryDependencies": ["@crashoverride/theme", "@crashoverride/label"],
+      "registryDependencies": [
+        "@crashoverride/theme",
+        "@crashoverride/label"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/field.tsx",
@@ -147,8 +197,10 @@
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
-      "description": "Multi-line text input on the dark surface — hairline --input border, neon focus ring, vertical resize.",
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Multi-line text input on the dark surface \u2014 hairline --input border, neon focus ring, vertical resize.",
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/textarea.tsx",
@@ -160,9 +212,14 @@
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
-      "description": "Dropdown select matching the Input voice — hairline --input trigger, neon focus ring, popover content with neon check on selected items.",
-      "dependencies": ["@radix-ui/react-select", "lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Dropdown select matching the Input voice \u2014 hairline --input trigger, neon focus ring, popover content with neon check on selected items.",
+      "dependencies": [
+        "@radix-ui/react-select",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/select.tsx",
@@ -174,9 +231,14 @@
       "name": "checkbox",
       "type": "registry:ui",
       "title": "Checkbox",
-      "description": "Square control — hairline --input box, neon --primary fill with dark check glyph when checked. Sharp brand radius.",
-      "dependencies": ["@radix-ui/react-checkbox", "lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Square control \u2014 hairline --input box, neon --primary fill with dark check glyph when checked. Sharp brand radius.",
+      "dependencies": [
+        "@radix-ui/react-checkbox",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/checkbox.tsx",
@@ -188,9 +250,13 @@
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
-      "description": "On/off toggle — hairline --input track when off, neon --primary fill when on. Themes in light and dark.",
-      "dependencies": ["@radix-ui/react-switch"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "On/off toggle \u2014 hairline --input track when off, neon --primary fill when on. Themes in light and dark.",
+      "dependencies": [
+        "@radix-ui/react-switch"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/switch.tsx",
@@ -202,9 +268,14 @@
       "name": "radio-group",
       "type": "registry:ui",
       "title": "RadioGroup",
-      "description": "Single-select group — hairline --input circles, selected item border + dot in neon --primary. Neon focus ring.",
-      "dependencies": ["@radix-ui/react-radio-group", "lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Single-select group \u2014 hairline --input circles, selected item border + dot in neon --primary. Neon focus ring.",
+      "dependencies": [
+        "@radix-ui/react-radio-group",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/radio-group.tsx",
@@ -216,9 +287,13 @@
       "name": "slider",
       "type": "registry:ui",
       "title": "Slider",
-      "description": "Range slider — hairline --input track, neon --primary filled range, round --background thumbs with a primary focus ring. Single or multi-thumb.",
-      "dependencies": ["@radix-ui/react-slider"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Range slider \u2014 hairline --input track, neon --primary filled range, round --background thumbs with a primary focus ring. Single or multi-thumb.",
+      "dependencies": [
+        "@radix-ui/react-slider"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/slider.tsx",
@@ -230,9 +305,14 @@
       "name": "toggle",
       "type": "registry:ui",
       "title": "Toggle",
-      "description": "Two-state toggle button — quiet muted voice, lifts to --accent when pressed. Mono label, sharp radius. Default and outline variants.",
-      "dependencies": ["@radix-ui/react-toggle", "class-variance-authority"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Two-state toggle button \u2014 quiet muted voice, lifts to --accent when pressed. Mono label, sharp radius. Default and outline variants.",
+      "dependencies": [
+        "@radix-ui/react-toggle",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/toggle.tsx",
@@ -244,9 +324,15 @@
       "name": "toggle-group",
       "type": "registry:ui",
       "title": "ToggleGroup",
-      "description": "Segmented set of toggles — single or multiple. Items join into one sharp control with hairline dividers; pressed segment fills --accent. Built on Toggle.",
-      "dependencies": ["@radix-ui/react-toggle-group", "class-variance-authority"],
-      "registryDependencies": ["@crashoverride/theme", "@crashoverride/toggle"],
+      "description": "Segmented set of toggles \u2014 single or multiple. Items join into one sharp control with hairline dividers; pressed segment fills --accent. Built on Toggle.",
+      "dependencies": [
+        "@radix-ui/react-toggle-group",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme",
+        "@crashoverride/toggle"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/toggle-group.tsx",
@@ -259,8 +345,13 @@
       "type": "registry:ui",
       "title": "Dialog",
       "description": "Centered modal over a dimmed, lightly blurred scrim. Panel on the --popover surface with a hairline border, sharp brand radius, brand-voice title and muted description. Built on Radix Dialog.",
-      "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/dialog.tsx",
@@ -272,9 +363,15 @@
       "name": "sheet",
       "type": "registry:ui",
       "title": "Sheet",
-      "description": "Edge-anchored side panel sliding in over a scrim — right (default), left, top, or bottom. --popover surface with a single hairline border on the anchored edge. Built on Radix Dialog.",
-      "dependencies": ["@radix-ui/react-dialog", "class-variance-authority", "lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Edge-anchored side panel sliding in over a scrim \u2014 right (default), left, top, or bottom. --popover surface with a single hairline border on the anchored edge. Built on Radix Dialog.",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/sheet.tsx",
@@ -287,8 +384,12 @@
       "type": "registry:ui",
       "title": "Drawer",
       "description": "Bottom drawer with a grab handle (mobile-first), sliding up over a scrim. --popover surface, sharp top corners, muted handle. Built on vaul.",
-      "dependencies": ["vaul"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "dependencies": [
+        "vaul"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/drawer.tsx",
@@ -301,8 +402,12 @@
       "type": "registry:ui",
       "title": "Popover",
       "description": "Rich floating content anchored to a trigger; click to toggle, click-away closes. --popover surface with a hairline border, sharp brand radius, soft shadow. Built on Radix Popover.",
-      "dependencies": ["@radix-ui/react-popover"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "dependencies": [
+        "@radix-ui/react-popover"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/popover.tsx",
@@ -315,8 +420,12 @@
       "type": "registry:ui",
       "title": "Tooltip",
       "description": "Hover/focus tooltip in the brand's compact mono voice on the --popover surface with a hairline border. Wrap your app (or a subtree) in TooltipProvider. Built on Radix Tooltip.",
-      "dependencies": ["@radix-ui/react-tooltip"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "dependencies": [
+        "@radix-ui/react-tooltip"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/tooltip.tsx",
@@ -328,9 +437,14 @@
       "name": "dropdown-menu",
       "type": "registry:ui",
       "title": "DropdownMenu",
-      "description": "Click-triggered menu on the --popover surface — highlighted row lifts to --accent, uppercase mono labels, muted shortcuts, neon check/dot indicators, destructive item variant. Built on Radix DropdownMenu.",
-      "dependencies": ["@radix-ui/react-dropdown-menu", "lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Click-triggered menu on the --popover surface \u2014 highlighted row lifts to --accent, uppercase mono labels, muted shortcuts, neon check/dot indicators, destructive item variant. Built on Radix DropdownMenu.",
+      "dependencies": [
+        "@radix-ui/react-dropdown-menu",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/dropdown-menu.tsx",
@@ -342,9 +456,15 @@
       "name": "command",
       "type": "registry:ui",
       "title": "Command",
-      "description": "Keyboard-first command palette in the brand's terminal flavour — search input over grouped, filterable items on the --popover surface, uppercase mono group headings, --accent highlighted row, muted mono shortcuts. Includes CommandDialog (palette in a centered modal). Built on cmdk.",
-      "dependencies": ["cmdk", "lucide-react"],
-      "registryDependencies": ["@crashoverride/theme", "@crashoverride/dialog"],
+      "description": "Keyboard-first command palette in the brand's terminal flavour \u2014 search input over grouped, filterable items on the --popover surface, uppercase mono group headings, --accent highlighted row, muted mono shortcuts. Includes CommandDialog (palette in a centered modal). Built on cmdk.",
+      "dependencies": [
+        "cmdk",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme",
+        "@crashoverride/dialog"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/command.tsx",
@@ -356,8 +476,10 @@
       "name": "combobox",
       "type": "registry:ui",
       "title": "Combobox",
-      "description": "Autocomplete input + filtered dropdown — composes Popover and Command. A trigger button opens a popover holding a searchable command list with a neon check on the selected option. No new Radix package.",
-      "dependencies": ["lucide-react"],
+      "description": "Autocomplete input + filtered dropdown \u2014 composes Popover and Command. A trigger button opens a popover holding a searchable command list with a neon check on the selected option. No new Radix package.",
+      "dependencies": [
+        "lucide-react"
+      ],
       "registryDependencies": [
         "@crashoverride/theme",
         "@crashoverride/popover",
@@ -375,8 +497,12 @@
       "type": "registry:ui",
       "title": "Tabs",
       "description": "Underline tab strip for switching views or filters. The active tab carries a neon --primary underline and a bright label; inactive tabs run muted. Mono voice, hairline baseline. Built on Radix Tabs.",
-      "dependencies": ["@radix-ui/react-tabs"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "dependencies": [
+        "@radix-ui/react-tabs"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/tabs.tsx",
@@ -388,9 +514,14 @@
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
-      "description": "Stacked disclosure panels inside a hairline-bordered, sharp-radius container — mono trigger rows with a chevron that rotates on open, muted body copy. Single-open by default; set type=\"multiple\" to allow many. Built on Radix Accordion.",
-      "dependencies": ["@radix-ui/react-accordion", "lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Stacked disclosure panels inside a hairline-bordered, sharp-radius container \u2014 mono trigger rows with a chevron that rotates on open, muted body copy. Single-open by default; set type=\"multiple\" to allow many. Built on Radix Accordion.",
+      "dependencies": [
+        "@radix-ui/react-accordion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/accordion.tsx",
@@ -403,8 +534,12 @@
       "type": "registry:ui",
       "title": "Collapsible",
       "description": "Single expandable region driven by your own trigger. Content slides/fades in on open. Built on Radix Collapsible.",
-      "dependencies": ["@radix-ui/react-collapsible"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "dependencies": [
+        "@radix-ui/react-collapsible"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/collapsible.tsx",
@@ -416,9 +551,13 @@
       "name": "alert-dialog",
       "type": "registry:ui",
       "title": "AlertDialog",
-      "description": "Confirm/destructive modal over a dimmed scrim — title, description, Cancel + Action buttons. The action maps to --primary, or --destructive when destructive. --popover surface, hairline border, sharp brand radius. Built on Radix AlertDialog.",
-      "dependencies": ["@radix-ui/react-alert-dialog"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Confirm/destructive modal over a dimmed scrim \u2014 title, description, Cancel + Action buttons. The action maps to --primary, or --destructive when destructive. --popover surface, hairline border, sharp brand radius. Built on Radix AlertDialog.",
+      "dependencies": [
+        "@radix-ui/react-alert-dialog"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/alert-dialog.tsx",
@@ -430,8 +569,10 @@
       "name": "table",
       "type": "registry:ui",
       "title": "Table",
-      "description": "Semantic data table set — hairline --border row rules, an uppercase mono header voice, and rows that lift to --accent on hover. Right-align mono numerics via className. Includes Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption.",
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Semantic data table set \u2014 hairline --border row rules, an uppercase mono header voice, and rows that lift to --accent on hover. Right-align mono numerics via className. Includes Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption.",
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/table.tsx",
@@ -443,9 +584,13 @@
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
-      "description": "Inline message banner — flat tinted fill, hairline border, and a 3px left accent. Variants map to the brand status palette: default, info (cobalt), success (neon), warning (amber), destructive (red). Mono title, muted body, optional leading lucide icon.",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Inline message banner \u2014 flat tinted fill, hairline border, and a 3px left accent. Variants map to the brand status palette: default, info (cobalt), success (neon), warning (amber), destructive (red). Mono title, muted body, optional leading lucide icon.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/alert.tsx",
@@ -457,9 +602,13 @@
       "name": "progress",
       "type": "registry:ui",
       "title": "Progress",
-      "description": "Determinate progress bar — a neon --primary fill riding a muted track with a rounded cap and a smooth width transition. Built on Radix Progress.",
-      "dependencies": ["@radix-ui/react-progress"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Determinate progress bar \u2014 a neon --primary fill riding a muted track with a rounded cap and a smooth width transition. Built on Radix Progress.",
+      "dependencies": [
+        "@radix-ui/react-progress"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/progress.tsx",
@@ -471,8 +620,10 @@
       "name": "skeleton",
       "type": "registry:ui",
       "title": "Skeleton",
-      "description": "Loading placeholder block — a muted --muted surface with a subtle pulse. Size it with utilities and compose several to mimic a layout.",
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Loading placeholder block \u2014 a muted --muted surface with a subtle pulse. Size it with utilities and compose several to mimic a layout.",
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/skeleton.tsx",
@@ -484,9 +635,14 @@
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
-      "description": "Circular user mark — renders an image, falling back to up-to-two mono initials on a muted surface. Sizes xs|sm|md|lg; ring adds a neon accent border. Includes Avatar, AvatarImage, AvatarFallback and an initials() helper. Built on Radix Avatar.",
-      "dependencies": ["@radix-ui/react-avatar", "class-variance-authority"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Circular user mark \u2014 renders an image, falling back to up-to-two mono initials on a muted surface. Sizes xs|sm|md|lg; ring adds a neon accent border. Includes Avatar, AvatarImage, AvatarFallback and an initials() helper. Built on Radix Avatar.",
+      "dependencies": [
+        "@radix-ui/react-avatar",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/avatar.tsx",
@@ -498,9 +654,13 @@
       "name": "scroll-area",
       "type": "registry:ui",
       "title": "ScrollArea",
-      "description": "Scroll container with a slim, brand-styled scrollbar — the thumb runs on the --border token, the track stays transparent. Set a height and overflow content scrolls. Built on Radix ScrollArea.",
-      "dependencies": ["@radix-ui/react-scroll-area"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Scroll container with a slim, brand-styled scrollbar \u2014 the thumb runs on the --border token, the track stays transparent. Set a height and overflow content scrolls. Built on Radix ScrollArea.",
+      "dependencies": [
+        "@radix-ui/react-scroll-area"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/scroll-area.tsx",
@@ -512,9 +672,13 @@
       "name": "spinner",
       "type": "registry:ui",
       "title": "Spinner",
-      "description": "Indeterminate loading indicator — a spinning lucide ring tinted with the neon --primary. Inherits the current font size so it lines up inside buttons and labels. Carries role=status.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Indeterminate loading indicator \u2014 a spinning lucide ring tinted with the neon --primary. Inherits the current font size so it lines up inside buttons and labels. Carries role=status.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/spinner.tsx",
@@ -526,9 +690,14 @@
       "name": "breadcrumb",
       "type": "registry:ui",
       "title": "Breadcrumb",
-      "description": "Hierarchical path — muted mono links that lift to the foreground, bold current page. Composable shadcn structure with slot-based links and separators.",
-      "dependencies": ["@radix-ui/react-slot", "lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Hierarchical path \u2014 muted mono links that lift to the foreground, bold current page. Composable shadcn structure with slot-based links and separators.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/breadcrumb.tsx",
@@ -540,9 +709,14 @@
       "name": "pagination",
       "type": "registry:ui",
       "title": "Pagination",
-      "description": "Page navigation with prev/next + numbered cells in the brand mono voice — the active page lifts to the neon --primary fill, the rest stay quiet. Reuses the Button styling.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["@crashoverride/theme", "@crashoverride/button"],
+      "description": "Page navigation with prev/next + numbered cells in the brand mono voice \u2014 the active page lifts to the neon --primary fill, the rest stay quiet. Reuses the Button styling.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme",
+        "@crashoverride/button"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/pagination.tsx",
@@ -554,13 +728,15 @@
       "name": "navigation-menu",
       "type": "registry:ui",
       "title": "NavigationMenu",
-      "description": "Horizontal site nav with mega-menu dropdowns — display-voice triggers that lift to --accent, a viewport floating on the --popover surface. Built on Radix NavigationMenu.",
+      "description": "Horizontal site nav with mega-menu dropdowns \u2014 display-voice triggers that lift to --accent, a viewport floating on the --popover surface. Built on Radix NavigationMenu.",
       "dependencies": [
         "@radix-ui/react-navigation-menu",
         "class-variance-authority",
         "lucide-react"
       ],
-      "registryDependencies": ["@crashoverride/theme"],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/navigation-menu.tsx",
@@ -572,9 +748,14 @@
       "name": "context-menu",
       "type": "registry:ui",
       "title": "ContextMenu",
-      "description": "Right-click menu opened at the cursor — popover surface, hairline border, mono uppercase labels, destructive items mapped to the --destructive token. Built on Radix ContextMenu.",
-      "dependencies": ["@radix-ui/react-context-menu", "lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Right-click menu opened at the cursor \u2014 popover surface, hairline border, mono uppercase labels, destructive items mapped to the --destructive token. Built on Radix ContextMenu.",
+      "dependencies": [
+        "@radix-ui/react-context-menu",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/context-menu.tsx",
@@ -586,9 +767,13 @@
       "name": "hover-card",
       "type": "registry:ui",
       "title": "HoverCard",
-      "description": "Preview card on hover/focus for a user or repo mention — floats on the --popover surface with a hairline border and sharp brand radius. Built on Radix HoverCard.",
-      "dependencies": ["@radix-ui/react-hover-card"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Preview card on hover/focus for a user or repo mention \u2014 floats on the --popover surface with a hairline border and sharp brand radius. Built on Radix HoverCard.",
+      "dependencies": [
+        "@radix-ui/react-hover-card"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/hover-card.tsx",
@@ -600,9 +785,14 @@
       "name": "menubar",
       "type": "registry:ui",
       "title": "Menubar",
-      "description": "Desktop-style persistent menu bar — bordered bar with display-voice triggers, each menu dropping onto the --popover surface and sharing the dropdown row styling. Built on Radix Menubar.",
-      "dependencies": ["@radix-ui/react-menubar", "lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Desktop-style persistent menu bar \u2014 bordered bar with display-voice triggers, each menu dropping onto the --popover surface and sharing the dropdown row styling. Built on Radix Menubar.",
+      "dependencies": [
+        "@radix-ui/react-menubar",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/menubar.tsx",
@@ -626,7 +816,7 @@
       "name": "sidebar",
       "type": "registry:ui",
       "title": "Sidebar",
-      "description": "Collapsible app left rail on the --sidebar-* tokens — provider + icon rail, neon left-border active state, Sheet on mobile. The full shadcn sidebar set composing Sheet, Tooltip, Separator, Skeleton, Button and Input.",
+      "description": "Collapsible app left rail on the --sidebar-* tokens \u2014 provider + icon rail, neon left-border active state, Sheet on mobile. The full shadcn sidebar set composing Sheet, Tooltip, Separator, Skeleton, Button and Input.",
       "dependencies": [
         "@radix-ui/react-slot",
         "class-variance-authority",
@@ -653,9 +843,15 @@
       "name": "icon-button",
       "type": "registry:ui",
       "title": "IconButton",
-      "description": "Square, icon-only action for dense chrome — toolbars, panel headers, table rows. Ghost / outline / solid variants, sizes sm/md/lg. Requires a label (sets aria-label + tooltip).",
-      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
-      "registryDependencies": ["@crashoverride/theme", "@crashoverride/button"],
+      "description": "Square, icon-only action for dense chrome \u2014 toolbars, panel headers, table rows. Ghost / outline / solid variants, sizes sm/md/lg. Requires a label (sets aria-label + tooltip).",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme",
+        "@crashoverride/button"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/icon-button.tsx",
@@ -667,8 +863,11 @@
       "name": "button-group",
       "type": "registry:ui",
       "title": "ButtonGroup",
-      "description": "Joins related Buttons into one segmented control with shared borders — inner corners square off and adjacent hairlines collapse. Horizontal or vertical.",
-      "registryDependencies": ["@crashoverride/theme", "@crashoverride/button"],
+      "description": "Joins related Buttons into one segmented control with shared borders \u2014 inner corners square off and adjacent hairlines collapse. Horizontal or vertical.",
+      "registryDependencies": [
+        "@crashoverride/theme",
+        "@crashoverride/button"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/button-group.tsx",
@@ -681,8 +880,12 @@
       "type": "registry:ui",
       "title": "AspectRatio",
       "description": "Constrains children to a fixed width:height ratio (e.g. 16/9). Set object-cover on media to crop cleanly. Built on Radix AspectRatio.",
-      "dependencies": ["@radix-ui/react-aspect-ratio"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "dependencies": [
+        "@radix-ui/react-aspect-ratio"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/aspect-ratio.tsx",
@@ -694,8 +897,11 @@
       "name": "input-group",
       "type": "registry:ui",
       "title": "InputGroup",
-      "description": "An Input joined with leading/trailing addons into one bordered control — addons sit on the --secondary surface in the mono voice; the group carries the hairline border and neon focus-within ring. Composes Input.",
-      "registryDependencies": ["@crashoverride/theme", "@crashoverride/input"],
+      "description": "An Input joined with leading/trailing addons into one bordered control \u2014 addons sit on the --secondary surface in the mono voice; the group carries the hairline border and neon focus-within ring. Composes Input.",
+      "registryDependencies": [
+        "@crashoverride/theme",
+        "@crashoverride/input"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/input-group.tsx",
@@ -707,9 +913,14 @@
       "name": "input-otp",
       "type": "registry:ui",
       "title": "InputOTP",
-      "description": "One-time-passcode field — auto-advancing, paste-aware mono cells on the hairline --input border; the active cell lights its border + ring with neon --ring and shows a blinking caret. Built on the input-otp package.",
-      "dependencies": ["input-otp", "lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "One-time-passcode field \u2014 auto-advancing, paste-aware mono cells on the hairline --input border; the active cell lights its border + ring with neon --ring and shows a blinking caret. Built on the input-otp package.",
+      "dependencies": [
+        "input-otp",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/input-otp.tsx",
@@ -721,9 +932,13 @@
       "name": "native-select",
       "type": "registry:ui",
       "title": "NativeSelect",
-      "description": "A lightly-styled native <select> for simple, accessible cases (no custom popover). Matches the Input voice — hairline --input border, neon focus ring — with a brand chevron. Pass options or <option> children.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "A lightly-styled native <select> for simple, accessible cases (no custom popover). Matches the Input voice \u2014 hairline --input border, neon focus ring \u2014 with a brand chevron. Pass options or <option> children.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/native-select.tsx",
@@ -735,9 +950,14 @@
       "name": "resizable",
       "type": "registry:ui",
       "title": "Resizable",
-      "description": "Panels split by a draggable handle — a hairline --border rule that lights to neon --ring on focus, with an optional grip badge on the --secondary surface. Built on react-resizable-panels (v4).",
-      "dependencies": ["react-resizable-panels", "lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Panels split by a draggable handle \u2014 a hairline --border rule that lights to neon --ring on focus, with an optional grip badge on the --secondary surface. Built on react-resizable-panels (v4).",
+      "dependencies": [
+        "react-resizable-panels",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/resizable.tsx",
@@ -750,7 +970,10 @@
       "type": "registry:ui",
       "title": "Carousel",
       "description": "Horizontal (or vertical) slide carousel with prev/next controls that reuse the brand IconButton and disable at the ends. Keyboard + paste aware. Built on embla-carousel-react.",
-      "dependencies": ["embla-carousel-react", "lucide-react"],
+      "dependencies": [
+        "embla-carousel-react",
+        "lucide-react"
+      ],
       "registryDependencies": [
         "@crashoverride/theme",
         "@crashoverride/icon-button"
@@ -766,9 +989,13 @@
       "name": "toaster",
       "type": "registry:ui",
       "title": "Toaster",
-      "description": "Stacked toast system on the brand surfaces — mount one <Toaster /> near the app root and fire toasts with the re-exported toast(). Theme is read from the document root (.dark / .light / [data-theme]), so no next-themes provider is needed. Built on sonner.",
-      "dependencies": ["sonner"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Stacked toast system on the brand surfaces \u2014 mount one <Toaster /> near the app root and fire toasts with the re-exported toast(). Theme is read from the document root (.dark / .light / [data-theme]), so no next-themes provider is needed. Built on sonner.",
+      "dependencies": [
+        "sonner"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/toaster.tsx",
@@ -781,8 +1008,15 @@
       "type": "registry:ui",
       "title": "Calendar",
       "description": "Month-grid date picker (single / multiple / range). Brand nav arrows reuse the ghost Button voice and the selected day fills with the neon --primary token; today gets a subtle accent ring. Built on react-day-picker + date-fns.",
-      "dependencies": ["react-day-picker", "date-fns", "lucide-react"],
-      "registryDependencies": ["@crashoverride/theme", "@crashoverride/button"],
+      "dependencies": [
+        "react-day-picker",
+        "date-fns",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme",
+        "@crashoverride/button"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/calendar.tsx",
@@ -795,7 +1029,10 @@
       "type": "registry:ui",
       "title": "DatePicker",
       "description": "Button trigger + popover Calendar. Composes our Popover and Calendar (no new package); the trigger matches the Input voice with a leading calendar glyph and the picked date is formatted with date-fns.",
-      "dependencies": ["date-fns", "lucide-react"],
+      "dependencies": [
+        "date-fns",
+        "lucide-react"
+      ],
       "registryDependencies": [
         "@crashoverride/theme",
         "@crashoverride/popover",
@@ -812,8 +1049,10 @@
       "name": "status-badge",
       "type": "registry:ui",
       "title": "StatusBadge",
-      "description": "Health/status pill mapping a semantic status to a brand colour + leading dot. Lowercase mono, sharp corners. healthy → chart-4 lime, needs_attention / at_risk → chart-3 amber, critical → destructive, stale → muted.",
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Health/status pill mapping a semantic status to a brand colour + leading dot. Lowercase mono, sharp corners. healthy \u2192 chart-4 lime, needs_attention / at_risk \u2192 chart-3 amber, critical \u2192 destructive, stale \u2192 muted.",
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/status-badge.tsx",
@@ -825,9 +1064,13 @@
       "name": "tag",
       "type": "registry:ui",
       "title": "Tag",
-      "description": "Inline metadata item and removable chip — the workhorse of dense console info rows. icon + label for a meta item, label + value for a key→value pair; set onRemove for a dismissible chip. Muted mono voice.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Inline metadata item and removable chip \u2014 the workhorse of dense console info rows. icon + label for a meta item, label + value for a key\u2192value pair; set onRemove for a dismissible chip. Muted mono voice.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/tag.tsx",
@@ -840,7 +1083,9 @@
       "type": "registry:ui",
       "title": "Kbd",
       "description": "Keyboard key hint. Mono, hairline border, subtle fill, sharp brand corners. Combine for chords.",
-      "registryDependencies": ["@crashoverride/theme"],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/kbd.tsx",
@@ -853,7 +1098,9 @@
       "type": "registry:ui",
       "title": "Empty",
       "description": "Empty-state block: a centered icon chip, title, description, and an optional action inside a dashed hairline frame. Brand display title, muted body copy.",
-      "registryDependencies": ["@crashoverride/theme"],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/empty.tsx",
@@ -866,7 +1113,9 @@
       "type": "registry:ui",
       "title": "Item",
       "description": "A versatile media row: leading media, title + description, and trailing actions. The building block for lists, settings rows, and results. Card surface with a hairline border; interactive adds a hover lift.",
-      "registryDependencies": ["@crashoverride/theme"],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/item.tsx",
@@ -878,8 +1127,10 @@
       "name": "typography",
       "type": "registry:ui",
       "title": "Typography",
-      "description": "Prose primitives — H1, H2, H3, P, Lead, Blockquote, InlineCode, Muted. Headings ride the display face; inline code is mono; muted variants resolve to --muted-foreground. className-first.",
-      "registryDependencies": ["@crashoverride/theme"],
+      "description": "Prose primitives \u2014 H1, H2, H3, P, Lead, Blockquote, InlineCode, Muted. Headings ride the display face; inline code is mono; muted variants resolve to --muted-foreground. className-first.",
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/typography.tsx",
@@ -892,7 +1143,9 @@
       "type": "registry:ui",
       "title": "CodePanel",
       "description": "The signature developer surface: a terminal/BBS-aesthetic code block on the slate --card surface with optional macOS traffic-light chrome. Mono voice, hairline border; code body lives in a <pre>.",
-      "registryDependencies": ["@crashoverride/theme"],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/code-panel.tsx",
@@ -905,8 +1158,12 @@
       "type": "registry:ui",
       "title": "Chart",
       "description": "Thin Recharts wrapper that wires the brand capability palette (Monitor/Inspect/Tag/Track/AI) into every chart via --chart-1..5. ChartContainer injects the palette + responsive sizing; ChartTooltip is the branded slate tooltip.",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["@crashoverride/theme"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/chart.tsx",
@@ -919,7 +1176,9 @@
       "type": "registry:ui",
       "title": "Logo",
       "description": "Brand lockup: the needle mark (inline SVG drawn in currentColor) with an optional JetBrains-Mono wordmark. Props: size, withWordmark. aria-label \"Crash Override\".",
-      "registryDependencies": ["@crashoverride/theme"],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/logo.tsx",
@@ -932,7 +1191,9 @@
       "type": "registry:ui",
       "title": "Tagline",
       "description": "The brand liturgy \"Tag. Track. Trust.\" as the traffic-light device: three words on a black plate, red -> amber -> green, carrying the .t-tag/.t-track/.t-trust semantic hooks. Display face.",
-      "registryDependencies": ["@crashoverride/theme"],
+      "registryDependencies": [
+        "@crashoverride/theme"
+      ],
       "files": [
         {
           "path": "src/registry/crashoverride/ui/tagline.tsx",

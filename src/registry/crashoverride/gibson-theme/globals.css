@@ -1,0 +1,171 @@
+/* Gibson theme — INTERNAL ONLY.
+   Serves the Gibson admin portal (gibson-hackers.com) and other internal
+   apps. Never vendor this onto crashoverride.com or any public or
+   customer-facing property — public sites use the `theme` registry item.
+   Dark-led: deep near-black indigo surfaces, phosphor-lime primary, hairline
+   borders. Light mode is the proven corp light block (verbatim) so the in-app
+   toggle remains usable. This file is a 1:1 structural swap for `theme`.
+   Canonical brand spec + approved home-board values: docs/gibson-home-spec.md */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./tokens.css";
+
+@custom-variant dark (&:is(.dark *, [data-theme="dark"] *)); /* both .dark and the data-theme convention (admin uses data-theme) */
+
+/* Brand fonts: self-hosted-first, matching brand-visual (the token canon).
+   Primary src is the brand-visual vendored OFL woff2 served from its Pages
+   site; the gstatic latin-subset woff2 stays as a same-declaration fallback
+   so consumers who cannot reach the Pages host are not broken.
+   JetBrains Mono (titles/brand) · Inter (body) · Geist Mono (code). */
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(https://crashappsec.github.io/brand-visual/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2) format("woff2"),
+       url(https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://crashappsec.github.io/brand-visual/fonts/inter/InterVariable.woff2) format("woff2"),
+       url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url(https://crashappsec.github.io/brand-visual/fonts/geist-mono/GeistMono-Variable.woff2) format("woff2"),
+       url(https://fonts.gstatic.com/s/geistmono/v5/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* shadcn theme bridge — the exact CSS variables shadcn/ui expects, mapped to the
+   Gibson look. Dark is the default (:root); light is opt-in via .light / [data-theme=light]. */
+:root,
+[data-theme="dark"],
+.dark {
+  --radius: 0.375rem;
+  --background: oklch(0.145 0.02 274);
+  --foreground: oklch(0.97 0.004 90);
+  --card: oklch(0.185 0.022 274);
+  --card-foreground: oklch(0.97 0.004 90);
+  --popover: oklch(0.22 0.022 274);
+  --popover-foreground: oklch(0.97 0.004 90);
+  --primary: oklch(0.93 0.25 124);
+  --primary-foreground: oklch(0.13 0.02 274);
+  --secondary: oklch(0.24 0.03 274);
+  --secondary-foreground: oklch(0.97 0.004 90);
+  --muted: oklch(0.24 0.03 274);
+  --muted-foreground: oklch(0.66 0.018 274);
+  --accent: oklch(0.24 0.03 274);
+  --accent-foreground: oklch(0.97 0.004 90);
+  --destructive: oklch(0.635 0.225 23);
+  --destructive-foreground: oklch(0.97 0.004 90);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.93 0.25 124);
+  --chart-1: oklch(0.46 0.18 309);
+  --chart-2: oklch(0.66 0.24 5);
+  --chart-3: oklch(0.76 0.16 70);
+  --chart-4: oklch(0.93 0.25 124);
+  --chart-5: oklch(0.70 0.13 183);
+  --sidebar: oklch(0.125 0.018 274);
+  --sidebar-foreground: oklch(0.97 0.004 90);
+  --sidebar-primary: oklch(0.93 0.25 124);
+  --sidebar-primary-foreground: oklch(0.13 0.02 274);
+  --sidebar-accent: oklch(0.22 0.025 274);
+  --sidebar-accent-foreground: oklch(0.97 0.004 90);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.93 0.25 124);
+}
+[data-theme="light"],
+.light {
+  --radius: 0.25rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.205 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.205 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.205 0 0);
+  --primary: oklch(0.46 0.18 309);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.004 75);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.95 0.004 75);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: oklch(0.92 0.006 75);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.58 0.22 24);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.90 0.006 75);
+  --input: oklch(0.90 0.006 75);
+  --ring: oklch(0.46 0.18 309);
+  --chart-1: oklch(0.46 0.18 309);
+  --chart-2: oklch(0.58 0.22 5);
+  --chart-3: oklch(0.70 0.16 70);
+  --chart-4: oklch(0.80 0.21 124);
+  --chart-5: oklch(0.62 0.13 183);
+  --sidebar: oklch(0.985 0.003 75);
+  --sidebar-foreground: oklch(0.205 0 0);
+  --sidebar-primary: oklch(0.46 0.18 309);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.92 0.006 75);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.90 0.006 75);
+  --sidebar-ring: oklch(0.46 0.18 309);
+}
+
+/* Tailwind v4 maps --color-* / fonts / radius from the vars above */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-display: "JetBrains Mono", ui-monospace, monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
