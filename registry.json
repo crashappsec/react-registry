@@ -22,6 +22,24 @@
       ]
     },
     {
+      "name": "gibson-theme",
+      "type": "registry:style",
+      "title": "Gibson theme",
+      "description": "Gibson admin portal theme — dark-led near-black indigo + phosphor. Corp site uses `theme`.",
+      "files": [
+        {
+          "path": "src/registry/crashoverride/gibson-theme/globals.css",
+          "type": "registry:file",
+          "target": "app/globals.css"
+        },
+        {
+          "path": "src/registry/crashoverride/theme/tokens.css",
+          "type": "registry:file",
+          "target": "app/tokens.css"
+        }
+      ]
+    },
+    {
       "name": "layout",
       "type": "registry:ui",
       "title": "Layout primitives",
