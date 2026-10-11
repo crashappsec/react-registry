@@ -120,6 +120,19 @@ Requires the repo/org Actions setting "Allow GitHub Actions to create and approv
 pull requests". PRs opened with the default token do not trigger your CI — pass a
 PAT/App token as the `token` secret if you want CI on refresh PRs.
 
+> **Make sure the refresh target is actually loaded.** The `theme` item writes
+> `app/globals.css` and `app/tokens.css` (under `src/` if your project has one), and
+> your `components.json` `tailwind.css` should name that same `globals.css`. If your
+> app's entry stylesheet never imports that file, the job stays green forever while
+> changing nothing: every run succeeds, and the first real refresh PR updates a file
+> nobody loads. After installing the theme, confirm that path is reachable from the
+> app's entry (imported by the root layout or main stylesheet).
+>
+> If you also keep a **hand-maintained copy** of the theme (a stylesheet pasted from
+> this registry and loaded instead of the refresh target), the two will silently
+> diverge: refreshes update the target, not the copy. Import the refresh target
+> directly, or have the copy `@import` it, so exactly one file changes.
+
 ## What's in the registry
 
 - **theme** — brand token bridge (oklch light+dark) + JetBrains Mono / Inter / Geist Mono.
