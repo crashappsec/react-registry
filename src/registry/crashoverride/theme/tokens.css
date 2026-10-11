@@ -1,30 +1,124 @@
-/* Generated from @crashoverride/brand-tokens@1.0.1 by scripts/build-theme-tokens.mjs. Do not edit. */
+/* Generated from @crashoverride/brand-tokens@1.2.0 by scripts/build-theme-tokens.mjs. Do not edit. */
 /* ============================================================
-   Crash Override — Color Tokens
-   OFFICIAL BRAND PALETTE (Brand Book v1 — "Our colour palette")
-   Black · Fandango (purple) · Jazzberry (pink) · Thunder (off-white)
-   · Atomic lime. Validated against the Crash Override brand book.
+   Crash Override: Color Tokens
+   SOURCE: Brand book v1 (PDF, produced by BBB). The colour page
+   ("Our colour palette", Screen HEX) and the Tints page. The book
+   is canon; this file transcribes it. Where they disagree, the
+   book wins and this file is corrected (see CHANGELOG 1.2.0 and
+   crashappsec/digital-marketing#2286).
+
+   Five official colours:
+     Black #0B1221 · Fandango #523AA4 · Jazzberry #FF2F8E
+     · Thunder #E6E2DC · Atomic lime #B3FF00
+   The book specifies no white and no blue, amber, or teal. Brand-owner
+   decision (2026-10-10): there is no off-book white. The light end of
+   the palette is Thunder; "white" roles resolve to Thunder tint-10
+   (#FCFCFB), never #FFFFFF.
 
    Token NAMES are kept stable for back-compat (e.g. --color-neon-400),
    but their VALUES are the official brand colours:
      neon*    → Atomic lime   #B3FF00
-     cobalt*  → Fandango      #823AA4  (purple — the brand has NO blue)
-     magenta* → Jazzberry     #FF3F86  (hot pink)
+     cobalt*  → Fandango      #523AA4  (purple; the brand has NO blue)
+     magenta* → Jazzberry     #FF2F8E  (hot pink)
    Official-named aliases (--color-atomic-lime, --color-fandango,
-   --color-jazzberry, --color-thunder, --color-co-black) are provided.
+   --color-jazzberry, --color-thunder, --color-co-black) are provided,
+   plus the book's ten-step tint ramps (--color-<name>-tint-1..10).
+
+   Intermediate ramp steps (e.g. cobalt-400, magenta-700, grey-*) were
+   generated around earlier off-book bases and have no book basis.
+   They are kept unchanged pending a brand decision; only values that
+   restate an official colour were corrected.
    ============================================================ */
 
 :root {
-  /* ── Official brand colours (canonical) ───────────────────── */
-  --color-co-black: #161616;     /* Black — the brand dark / surface */
-  --color-fandango: #823AA4;     /* Fandango — primary purple accent */
-  --color-jazzberry: #FF3F86;    /* Jazzberry — hot-pink accent */
-  --color-thunder: #E8E2DC;      /* Thunder — warm off-white neutral */
-  --color-atomic-lime: #B3FF00;  /* Atomic lime — signature bright accent */
+  /* ── Official brand colours (canonical, Brand book v1 Screen HEX) ── */
+  --color-co-black: #0B1221;     /* Black: the brand dark / surface (navy-tinted) */
+  --color-fandango: #523AA4;     /* Fandango: primary purple accent */
+  --color-jazzberry: #FF2F8E;    /* Jazzberry: hot-pink accent */
+  --color-thunder: #E6E2DC;      /* Thunder: warm off-white neutral */
+  --color-atomic-lime: #B3FF00;  /* Atomic lime: signature bright accent */
 
-  /* ── Neutrals — Thunder-warm grey scale (Black → Thunder) ──── */
-  --color-white: #F7F6F5;     /* lightest text */
-  --color-grey-100: #E8E2DC;  /* Thunder — secondary light text */
+  /* ── Brand book tints (Brand book v1, Tints page) ──────────────
+     Ten steps per colour, strongest first, as the book lists them;
+     the book recommends tints "particularly for background
+     applications". Name: --color-<official-name>-tint-<step>, where
+     <step> is the book's position (1 = the colour, 10 = lightest).
+     The published steps are consistent with the base mixed with
+     (step - 1) x 10% white.
+
+     Tint-1 is the PRIMARY HEX above, not the book's first tint
+     swatch. For four ramps the book's first tint differs slightly
+     from its own colour page: Fandango #523AA0 (vs #523AA4),
+     Jazzberry #FF2F8A (vs #FF2F8E), Thunder #E2DED8 (vs #E6E2DC),
+     Atomic lime #AFFF00 (vs #B3FF00). Black matches (#0B1221).
+     Steps 2-10 are transcribed exactly as published (they derive
+     from the book's tint bases), not recomputed. Consequence: the
+     Thunder primary is one unit lighter per channel than its own
+     tint-2 (#E5E1DC). Needs brand decision (BBB). ── */
+  --color-co-black-tint-1: var(--color-co-black);  /* #0B1221, matches book tint 1 */
+  --color-co-black-tint-2: #232937;
+  --color-co-black-tint-3: #3C414D;
+  --color-co-black-tint-4: #545963;
+  --color-co-black-tint-5: #6D717A;
+  --color-co-black-tint-6: #858890;
+  --color-co-black-tint-7: #9DA0A6;
+  --color-co-black-tint-8: #B5B7BC;
+  --color-co-black-tint-9: #CED0D3;
+  --color-co-black-tint-10: #E6E7E8;
+
+  --color-fandango-tint-1: var(--color-fandango);  /* #523AA4; book tint 1 lists #523AA0 */
+  --color-fandango-tint-2: #634DA9;
+  --color-fandango-tint-3: #7561B3;
+  --color-fandango-tint-4: #8675BC;
+  --color-fandango-tint-5: #9789C6;
+  --color-fandango-tint-6: #A89CCF;
+  --color-fandango-tint-7: #BAB0D9;
+  --color-fandango-tint-8: #CBC4E2;
+  --color-fandango-tint-9: #DCD8EC;
+  --color-fandango-tint-10: #EDEBF5;
+
+  --color-atomic-lime-tint-1: var(--color-atomic-lime);  /* #B3FF00; book tint 1 lists #AFFF00 */
+  --color-atomic-lime-tint-2: #B7FF19;
+  --color-atomic-lime-tint-3: #BFFF33;
+  --color-atomic-lime-tint-4: #C7FF4C;
+  --color-atomic-lime-tint-5: #CFFF66;
+  --color-atomic-lime-tint-6: #D7FF7F;
+  --color-atomic-lime-tint-7: #DFFF99;
+  --color-atomic-lime-tint-8: #E7FFB2;
+  --color-atomic-lime-tint-9: #EFFFCC;
+  --color-atomic-lime-tint-10: #F7FFE5;
+
+  --color-thunder-tint-1: var(--color-thunder);  /* #E6E2DC; book tint 1 lists #E2DED8 */
+  --color-thunder-tint-2: #E5E1DC;
+  --color-thunder-tint-3: #E8E5E0;
+  --color-thunder-tint-4: #EBE8E4;
+  --color-thunder-tint-5: #EEEBE8;
+  --color-thunder-tint-6: #F0EEEB;
+  --color-thunder-tint-7: #F3F2EF;
+  --color-thunder-tint-8: #F6F5F3;
+  --color-thunder-tint-9: #F9F8F7;
+  --color-thunder-tint-10: #FCFCFB;
+
+  --color-jazzberry-tint-1: var(--color-jazzberry);  /* #FF2F8E; book tint 1 lists #FF2F8A */
+  --color-jazzberry-tint-2: #FF4395;
+  --color-jazzberry-tint-3: #FF59A1;
+  --color-jazzberry-tint-4: #FF6DAD;
+  --color-jazzberry-tint-5: #FF82B9;
+  --color-jazzberry-tint-6: #FF97C4;
+  --color-jazzberry-tint-7: #FFACD0;
+  --color-jazzberry-tint-8: #FFC0DC;
+  --color-jazzberry-tint-9: #FFD5E8;
+  --color-jazzberry-tint-10: #FFEAF3;
+
+  /* ── Neutrals ─────────────────────────────────────────────────
+     --color-white is the "white" role: the lightest Thunder tint
+     (decision 2026-10-10: no off-book white; was #F7F6F5).
+     The grey-* steps are a legacy Thunder-warm scale with no book
+     basis. The book's neutral ramp is the Black tint ramp above
+     (--color-co-black-tint-*). Kept unchanged pending a brand
+     decision. ── */
+  --color-white: var(--color-thunder-tint-10);  /* #FCFCFB: lightest text / white role */
+  --color-grey-100: var(--color-thunder);  /* Thunder: secondary light text */
   --color-grey-200: #CFC9C3;  /* light borders */
   --color-grey-300: #A39E99;  /* muted text */
   --color-grey-400: #8A857F;  /* subtle text */
@@ -50,41 +144,41 @@
   --color-cobalt-200: #DDC4E9;
   --color-cobalt-300: #BE8FD4;
   --color-cobalt-400: #A05FC0;  /* light fandango — text on dark */
-  --color-cobalt-500: #823AA4;  /* Fandango (brand purple) */
+  --color-cobalt-500: var(--color-fandango);  /* Fandango (brand purple) */
   --color-cobalt-600: #6A2E86;
   /* official-named purple aliases */
   --color-fandango-100: #F1E7F7;
   --color-fandango-300: #BE8FD4;
-  --color-fandango-500: #823AA4;
+  --color-fandango-500: var(--color-fandango);
   --color-fandango-700: #5A2173;  /* AA text on light tints */
 
   /* ── Jazzberry pink — tertiary accent (Inspect) ───────────── */
   --color-magenta-100: #FFE3EE;
-  --color-magenta-400: #FF3F86;  /* Jazzberry */
-  --color-magenta-500: #FF3F86;
+  --color-magenta-400: var(--color-jazzberry);  /* Jazzberry */
+  --color-magenta-500: var(--color-jazzberry);
   --color-magenta-700: #B01E5A;  /* AA text on magenta-100 */
   --color-magenta-900: #6E0E38;  /* headings on light tints */
   /* official-named pink aliases */
   --color-jazzberry-100: #FFE3EE;
-  --color-jazzberry-500: #FF3F86;
+  --color-jazzberry-500: var(--color-jazzberry);
   --color-jazzberry-700: #B01E5A;
 
   /* ── Thunder neutral ramp (warm off-white) ────────────────── */
   --color-thunder-100: #F7F5F2;
   --color-thunder-300: #EDE9E4;
-  --color-thunder-500: #E8E2DC;  /* Thunder */
+  --color-thunder-500: var(--color-thunder);  /* Thunder */
   --color-thunder-700: #BDB7B0;
 
   /* ── Amber — DEPRECATED alias → Fandango. Kept only so existing
      references resolve on-brand; used for the WARNING status role. ── */
   --color-amber-100: #F1E7F7;
-  --color-amber-400: #823AA4;
+  --color-amber-400: var(--color-fandango);
   --color-amber-700: #5A2173;
 
   /* ── Teal — DEPRECATED alias → Jazzberry. Kept for back-compat;
      no longer a distinct hue (five-colour brand). ── */
   --color-teal-100: #FFE3EE;
-  --color-teal-400: #FF3F86;
+  --color-teal-400: var(--color-jazzberry);
   --color-teal-700: #B01E5A;
 
   /* ── Status / utility ─────────────────────────────────────── */
@@ -92,10 +186,14 @@
   --color-red-800: #F44747;
   --color-red-900: #D16969;
   --color-red-deep: #991B1B;
+  --color-yellow-100: #FFFFE0;  /* absorbed from consumer (1.2.0) */
   --color-yellow-200: #FFFFAA;
   --color-yellow-400: #DCDCAA;
+  --color-yellow-500: #D7BA7D;  /* absorbed from consumer (1.2.0) */
   --color-yellow-700: #CE9178;
   --color-yellow-900: #B5854B;
+  --color-orange-100: #FFF2E9;  /* absorbed from consumer (1.2.0) */
+  --color-orange-200: #FFE0C9;  /* absorbed from consumer (1.2.0) */
   --color-orange-600: #CE9178;
 
   /* ── Terminal decoration (macOS traffic lights) ───────────── */
@@ -113,48 +211,100 @@
   --color-syntax-function: #C79BFF;  /* fandango-light — functions */
   --color-syntax-comment: hsl(225, 12%, 58%);   /* muted navy-grey */
 
-  /* ── Code block surfaces — lifted navy off the #161616 brand
-     black, so code panels harmonise with the surface (same family). ── */
+  /* ── Code block surfaces. No book basis; kept unchanged. This
+     near-neutral ink no longer shares a hue with the navy brand
+     Black (#0B1221): needs brand decision. ── */
   --color-code-bg: #0E0F10;
-  --color-code-border: rgba(255, 255, 255, 0.10);
+  --color-code-border: rgba(252, 252, 251, 0.10);  /* white role (#FCFCFB) at 10% */
   --color-code-text: hsl(0, 0%, 92%);
+  /* Code-tab labels (absorbed from consumer, 1.2.0). Active was
+     hsl(225, 25%, 100%), i.e. pure white: re-pointed to the white
+     role (no off-book white). Light overrides live in semantic.css. */
+  --color-code-tab-active: var(--color-white);
+  --color-code-tab-inactive: hsl(225, 25%, 70%);
 
-  /* ── Dark surfaces — the official Black #161616 is THE surface for
-     every content area. Cards & sections pop via hairline borders +
-     structure, never via a bg lift. ── */
+  /* ── Dark surfaces: the official Black (--color-co-black) is THE
+     surface for every content area. Cards & sections pop via hairline
+     borders + structure, never via a bg lift. The secondary / invert /
+     green surfaces have no book basis; kept unchanged. ── */
   --color-dark-surface: var(--color-co-black);            /* page + card background (Black) */
   --color-dark-surface-secondary: #2A2E3A;  /* slate — raised cards / inputs / terminals */
   --color-dark-surface-invert: #353B49;     /* hover / selection bg */
   --color-dark-surface-green: #11161F;      /* lab / innovation tint */
+  /* Dark-mode "brand off-white" panels (absorbed from consumer, 1.2.0).
+     Downstream they equal its own dark surface (sidebar, "unified") and
+     its own dark-surface-invert (dropdown bg); expressed here as the same
+     relationships rather than copying its off-book literals. */
+  --color-dark-brand-offwhite1: var(--color-dark-surface);         /* sidebar */
+  --color-dark-brand-offwhite2: var(--color-dark-surface-invert);  /* dropdown bg */
 
   /* ── Brand-colour alpha overlays ──────────────────────────────
-     Pattern: --color-{brand}-{base}-{percent×100}. ── */
+     Pattern: --color-{brand}-{base}-{percent×100}. RGB channels are
+     the corrected brand bases: lime 179,255,0 · Fandango 82,58,164
+     (cobalt*, amber*) · Jazzberry 255,47,142 (magenta*, teal*).
+     Note: the pre-1.2.0 cobalt/amber steps (-8, -12, -15, -20) run
+     higher than their names (e.g. -8 is 0.10); kept as authored. The
+     steps absorbed from the consumer in 1.2.0 (-0, -2, -3, -5, -6, -18,
+     -25, -30, -40, -45, and -8/-10 where new) use alpha = name / 100
+     and the corrected brand base, not the consumer's old bases. ── */
+  --color-neon-400-0: rgba(179, 255, 0, 0.00);
+  --color-neon-400-2: rgba(179, 255, 0, 0.02);
+  --color-neon-400-3: rgba(179, 255, 0, 0.03);
   --color-neon-400-5: rgba(179, 255, 0, 0.05);
+  --color-neon-400-6: rgba(179, 255, 0, 0.06);
   --color-neon-400-8: rgba(179, 255, 0, 0.08);
   --color-neon-400-10: rgba(179, 255, 0, 0.10);
   --color-neon-400-12: rgba(179, 255, 0, 0.12);
   --color-neon-400-15: rgba(179, 255, 0, 0.15);
+  --color-neon-400-18: rgba(179, 255, 0, 0.18);
   --color-neon-400-20: rgba(179, 255, 0, 0.20);
+  --color-neon-400-25: rgba(179, 255, 0, 0.25);
   --color-neon-400-30: rgba(179, 255, 0, 0.30);
+  --color-neon-400-40: rgba(179, 255, 0, 0.40);
 
-  --color-cobalt-500-8: rgba(130, 58, 164, 0.10);
-  --color-cobalt-500-12: rgba(130, 58, 164, 0.16);
-  --color-cobalt-500-15: rgba(130, 58, 164, 0.20);
-  --color-cobalt-500-20: rgba(130, 58, 164, 0.28);
+  --color-cobalt-500-0: rgba(82, 58, 164, 0.00);
+  --color-cobalt-500-5: rgba(82, 58, 164, 0.05);
+  --color-cobalt-500-6: rgba(82, 58, 164, 0.06);
+  --color-cobalt-500-8: rgba(82, 58, 164, 0.10);
+  --color-cobalt-500-10: rgba(82, 58, 164, 0.10);
+  --color-cobalt-500-12: rgba(82, 58, 164, 0.16);
+  --color-cobalt-500-15: rgba(82, 58, 164, 0.20);
+  --color-cobalt-500-18: rgba(82, 58, 164, 0.18);
+  --color-cobalt-500-20: rgba(82, 58, 164, 0.28);
+  --color-cobalt-500-25: rgba(82, 58, 164, 0.25);
+  --color-cobalt-500-30: rgba(82, 58, 164, 0.30);
+  --color-cobalt-500-45: rgba(82, 58, 164, 0.45);
 
-  --color-magenta-400-10: rgba(255, 63, 134, 0.10);
-  --color-magenta-400-12: rgba(255, 63, 134, 0.12);
-  --color-magenta-400-15: rgba(255, 63, 134, 0.15);
-  --color-magenta-400-20: rgba(255, 63, 134, 0.20);
+  --color-magenta-400-0: rgba(255, 47, 142, 0.00);
+  --color-magenta-400-3: rgba(255, 47, 142, 0.03);
+  --color-magenta-400-6: rgba(255, 47, 142, 0.06);
+  --color-magenta-400-8: rgba(255, 47, 142, 0.08);
+  --color-magenta-400-10: rgba(255, 47, 142, 0.10);
+  --color-magenta-400-12: rgba(255, 47, 142, 0.12);
+  --color-magenta-400-15: rgba(255, 47, 142, 0.15);
+  --color-magenta-400-20: rgba(255, 47, 142, 0.20);
+  --color-magenta-400-25: rgba(255, 47, 142, 0.25);
+  --color-magenta-400-30: rgba(255, 47, 142, 0.30);
+  --color-magenta-400-40: rgba(255, 47, 142, 0.40);
 
-  --color-amber-400-12: rgba(130, 58, 164, 0.16);
-  --color-amber-400-15: rgba(130, 58, 164, 0.20);
-  --color-amber-400-20: rgba(130, 58, 164, 0.28);
+  --color-amber-400-0: rgba(82, 58, 164, 0.00);
+  --color-amber-400-6: rgba(82, 58, 164, 0.06);
+  --color-amber-400-8: rgba(82, 58, 164, 0.08);
+  --color-amber-400-10: rgba(82, 58, 164, 0.10);
+  --color-amber-400-12: rgba(82, 58, 164, 0.16);
+  --color-amber-400-15: rgba(82, 58, 164, 0.20);
+  --color-amber-400-20: rgba(82, 58, 164, 0.28);
+  --color-amber-400-25: rgba(82, 58, 164, 0.25);
+  --color-amber-400-30: rgba(82, 58, 164, 0.30);
 
-  --color-teal-400-12: rgba(255, 63, 134, 0.12);
-  --color-teal-400-15: rgba(255, 63, 134, 0.15);
+  --color-teal-400-0: rgba(255, 47, 142, 0.00);
+  --color-teal-400-5: rgba(255, 47, 142, 0.05);
+  --color-teal-400-8: rgba(255, 47, 142, 0.08);
+  --color-teal-400-10: rgba(255, 47, 142, 0.10);
+  --color-teal-400-12: rgba(255, 47, 142, 0.12);
+  --color-teal-400-15: rgba(255, 47, 142, 0.15);
 
-  --color-white-8: rgba(255, 255, 255, 0.08);
+  --color-white-8: rgba(252, 252, 251, 0.08);  /* white role (#FCFCFB) at 8% */
 }
 /* ============================================================
    Crash Override — Spacing, Radius, Shadow, Motion Tokens
@@ -284,28 +434,39 @@
    Maps brand palette → roles (text / surface / border / button).
    Dark is the default (color-scheme: dark). Light mode is opt-in
    via [data-theme="light"] on <html>.
+   Ratios in comments are measured on Black #0B1221 (dark) by
+   `npm run report:contrast`.
    ============================================================ */
 
 :root,
 [data-theme="dark"],
 .dark {
   /* ── Text hierarchy ───────────────────────────────────────── */
-  --text-primary: hsl(225, 25%, 98%);    /* 18.9:1 */
-  --text-secondary: hsl(225, 25%, 80%);  /* 11.7:1 */
-  --text-tertiary: hsl(225, 25%, 58%);   /* 5.6:1 */
+  --text-primary: var(--color-white);    /* white role, Thunder tint-10 */
+  --text-secondary: hsl(225, 25%, 80%);  /* 10.92:1 */
+  --text-tertiary: hsl(225, 25%, 58%);   /* 5.23:1 */
   --text-emphasis: var(--color-neon-400);
   --text-invert: var(--color-grey-100);
   --text-disabled: hsl(225, 25%, 35%);
   --text-placeholder: hsl(225, 25%, 55%);
   --text-error: var(--color-red-800);
 
-  /* ── Capability + label accents (auto-flip to AA in light) ── */
-  --text-label-accent: var(--color-magenta-500);       /* default section eyebrow */
-  --text-label-cobalt: var(--color-cobalt-400);        /* Monitor */
-  --text-label-magenta: var(--color-magenta-500);      /* Inspect */
+  /* ── Capability + label accents (auto-flip to AA in light) ──
+     GROUND RULE (1.2.0, resolves brand-visual#5): Fandango is a
+     light-ground text colour (8.18:1 on the light surface, 2.23:1 on
+     Black); Jazzberry is a dark-ground text colour (5.39:1 on Black,
+     3.38:1 on the light surface). Usage is restricted per ground; the
+     brand values are not relit. So on dark the Fandango-family labels
+     (Monitor, teal alias) are neutral text, and Fandango marks the
+     capability through non-text accents (bars, borders, fills). The
+     previous dark value, light fandango --color-cobalt-400 #A05FC0, was
+     a relit Fandango at 4.36:1: under AA. See guidelines/accessibility.html. */
+  --text-label-accent: var(--color-magenta-500);       /* default section eyebrow: Jazzberry on dark */
+  --text-label-cobalt: var(--text-secondary);          /* Monitor: neutral on dark (ground rule) */
+  --text-label-magenta: var(--color-magenta-500);      /* Inspect: Jazzberry on dark */
   --text-label-amber: var(--color-neon-300);           /* Tag → light lime */
   --text-label-neon: var(--color-neon-400);            /* Track */
-  --text-label-teal: var(--color-cobalt-400);          /* → Fandango */
+  --text-label-teal: var(--text-secondary);            /* → Fandango alias: neutral on dark (ground rule) */
   --text-label-green-terminal: var(--color-neon-400);
   --text-label-yellow: var(--color-yellow-700);
 
@@ -320,6 +481,12 @@
   --surface-magenta: var(--color-magenta-500);
   --surface-error: var(--color-red-200);
   --surface-success: var(--color-neon-200);
+  /* Absorbed from the consuming site (1.2.0) */
+  --surface-grey: var(--color-grey-600);
+  --surface-brand-offwhite1: var(--color-dark-brand-offwhite1);  /* sidebar */
+  --surface-brand-offwhite2: var(--color-dark-brand-offwhite2);  /* dropdown bg */
+  --surface-yellow: var(--color-yellow-400);
+  --surface-warning: var(--color-yellow-200);
 
   /* ── Borders — cool, low-contrast hairlines ───────────────── */
   --border-default1: hsl(225, 25%, 35%);
@@ -328,9 +495,11 @@
   --border-negative: var(--color-red-800);
   --border-warning: var(--color-yellow-700);
   --border-positive: var(--color-neon-600);
+  --border-disabled1: hsl(225, 25%, 35%);  /* absorbed from consumer (1.2.0) */
+  --border-disabled2: var(--color-grey-600);  /* absorbed from consumer (1.2.0) */
   /* Hairline — the palette default divider. Low-contrast by design:
      cards & sections separate via structure, not bg colour. */
-  --border-hairline: rgba(255, 255, 255, 0.08);
+  --border-hairline: var(--color-white-8);
 
   /* ── Buttons — neon-green primary action ──────────────────── */
   --btn-primary-bg: var(--color-neon-400);
@@ -346,7 +515,7 @@
   /* Enterprise CTA — cobalt fill, hero/CTA bands only */
   --btn-enterprise-bg: var(--color-cobalt-500);
   --btn-enterprise-border: var(--color-cobalt-500);
-  --btn-enterprise-text: #FFFFFF;
+  --btn-enterprise-text: var(--color-white);
 
   /* ── Focus ring ───────────────────────────────────────────── */
   --focus-ring: var(--color-neon-400);
@@ -354,6 +523,13 @@
 
 /* ============================================================
    Light mode — brand accents stay; surfaces & text invert.
+   No off-book white (decision 2026-10-10): the light end of the
+   palette is Thunder. White and near-white surfaces map to the
+   nearest book Thunder tint (was #FFFFFF → tint-10, #F7F7F7 →
+   tint-9, #EFEFEF / #F0F0F0 → tint-6); white text roles use
+   --color-white. Greys used for text, borders, and disabled states
+   (#1A1A1A, #595959, #4A4A4A, #9D9D9D, #E5E5E5, #CCCCCC, #8E8E8E)
+   have no book basis and are unchanged pending a brand decision.
    ============================================================ */
 [data-theme="light"],
 .light {
@@ -361,7 +537,7 @@
   --text-secondary: #595959;
   --text-tertiary: #4A4A4A;
   --text-emphasis: var(--color-cobalt-500);
-  --text-invert: #F5F5F5;
+  --text-invert: var(--color-white);
   --text-disabled: #9D9D9D;
   --text-error: var(--color-red-deep);
 
@@ -374,28 +550,41 @@
   --text-label-green-terminal: var(--color-neon-900);
   --text-label-yellow: var(--color-yellow-900);
 
-  --surface-primary: #FFFFFF;
-  --surface-secondary: #F7F7F7;
-  --surface-invert: #EFEFEF;
+  --surface-primary: var(--color-thunder-tint-10);    /* was #FFFFFF */
+  --surface-secondary: var(--color-thunder-tint-9);   /* was #F7F7F7 */
+  --surface-invert: var(--color-thunder-tint-6);      /* was #EFEFEF */
   --surface-disabled: #E5E5E5;
-  --surface-card: #FFFFFF;
+  --surface-card: var(--color-thunder-tint-10);       /* was #FFFFFF */
+  /* Absorbed from the consuming site (1.2.0). The brand-offwhite pair
+     was #F7F7F7 / #EFEFEF downstream; it means the brand off-white, so
+     it is Thunder (decision 2026-10-10). --surface-warning #FEF3C7 is
+     taken as shipped downstream: no book basis (Tailwind amber-100). */
+  --surface-grey: #9D9D9D;
+  --surface-brand-offwhite1: var(--color-thunder);
+  --surface-brand-offwhite2: var(--color-thunder);
+  --surface-yellow: var(--color-yellow-400);
+  --surface-warning: #FEF3C7;
 
   --border-default1: #E5E5E5;
   --border-default2: #8E8E8E;
   --border-grey: #CCCCCC;
+  --border-disabled1: #E5E5E5;
+  --border-disabled2: #CCCCCC;
   --border-hairline: rgba(0, 0, 0, 0.08);
 
   --btn-primary-bg: var(--color-cobalt-500);
   --btn-primary-border: var(--color-cobalt-500);
-  --btn-primary-text: #FFFFFF;
+  --btn-primary-text: var(--color-white);
   --btn-secondary-border: #CCCCCC;
   --btn-secondary-text: #1A1A1A;
-  --btn-secondary-hover-bg: #F0F0F0;
+  --btn-secondary-hover-bg: var(--color-thunder-tint-6);  /* was #F0F0F0 */
   --btn-active-bg: var(--color-cobalt-600);
 
-  --color-code-bg: hsl(120, 14%, 97%);     /* faint green-tinted, not blue */
+  --color-code-bg: var(--color-thunder-tint-9);  /* was hsl(120, 14%, 97%) */
   --color-code-border: hsl(120, 10%, 88%);
   --color-code-text: hsl(140, 10%, 16%);
+  --color-code-tab-active: hsl(225, 25%, 12%);
+  --color-code-tab-inactive: hsl(225, 25%, 40%);
   --color-syntax-keyword: var(--color-magenta-700);
   --color-syntax-string: hsl(210, 60%, 35%);
   --color-syntax-function: hsl(220, 50%, 40%);
@@ -481,7 +670,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ── Accent underline for headline emphasis ─────────────────── */
 .co-accent-underline {
-  color: #FFFFFF;
+  color: var(--color-white);
   text-decoration: underline;
   text-decoration-color: var(--color-neon-400);
   text-underline-offset: 8px;
